@@ -44,6 +44,8 @@ INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT ./main.aux
 INPUT ./main.aux
 INPUT main.aux

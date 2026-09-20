@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1789879667.1399 "main.xdv" "main.pdf" "main" 1789879667.56699 0
-  "main.xdv" 1789879667.10828 12040 c4381373731d7d97949eeb4c00a65d36 "xelatex"
+["xdvipdfmx"] 1789883730.41884 "main.xdv" "main.pdf" "main" 1789883730.82359 0
+  "main.xdv" 1789883730.38891 29252 9ab472a50f9e1b89360c7587be7a1bd7 "xelatex"
   (generated)
   "main.pdf"
   (rewritten before read)
-["xelatex"] 1789879666.53038 "main.tex" "main.xdv" "main" 1789879667.56644 0
+["xelatex"] 1789883729.77926 "main.tex" "main.xdv" "main" 1789883730.82296 0
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -21,6 +21,7 @@
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls" 1748806692 20144 b966087dda3b194755eb460d32e2ef75 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty" 1761946296 5275 6f9d359641b36842524cdb97716ab75f ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/size11.clo" 1748806692 8464 f339f4d5391fbe0425b2d94c90e6819e ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty" 1579038678 6078 f1cb470c9199e7110a27851508ed7a5c ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1759437024 46885 8953c67ffba03252c6090aa19568b8ba ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1739048179 31715 19e60610b63819fe670dfa1cd84a4e94 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty" 1759176595 164714 a0cc5579dc5aec4384653d8dd1b3832a ""
@@ -37,8 +38,8 @@
   "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
   "/usr/local/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1774243011 5948557 1c9e16fb01bb3a60d918e37b5ecd9488 ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "main.aux" 1789879667.1043 32 3985256e7290058c681f74d7a3565a19 "xelatex"
-  "main.tex" 1789879666.48242 1923 47ecc87309b5f47b43b3deb6378040f6 ""
+  "main.aux" 1789883730.38813 32 044b7f8fc9779af7531264e0c5c84b6d "xelatex"
+  "main.tex" 1789883728.74941 3456 e8b84ed59debe0997c468eb8ed195289 ""
   (generated)
   "main.aux"
   "main.log"
