@@ -1,0 +1,40 @@
+% =====================================================================
+%  themes/serif.tex - matches your project-plan look (Georgia, 2cm
+%  margins) with tidier headings. Needs XeLaTeX or LuaLaTeX (the
+%  .latexmkrc already uses XeLaTeX). Georgia ships with macOS.
+% =====================================================================
+
+\usepackage[margin=2cm]{geometry}
+
+% --- Fonts ------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{Georgia}
+% Maths stays in Latin Modern unless you add e.g. \usepackage{unicode-math}
+
+% --- Paragraphs -------------------------------------------------------
+\usepackage[skip=8pt plus 1pt]{parskip}
+
+% --- Headings ---------------------------------------------------------
+\usepackage{titlesec}
+\definecolor{accent}{HTML}{1F4E79}
+\titleformat{\section}
+  {\Large\bfseries\color{accent}}{\thesection}{0.8em}{}
+\titleformat{\subsection}
+  {\large\bfseries}{\thesubsection}{0.8em}{}
+
+% --- Header / footer --------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small MATH3030 Project}
+\fancyhead[R]{\small Ragav Srinivasan}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Links ------------------------------------------------------------
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = accent,
+  citecolor  = accent,
+  urlcolor   = accent,
+}

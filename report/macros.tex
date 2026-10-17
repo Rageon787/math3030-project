@@ -1,0 +1,18 @@
+% =====================================================================
+%  macros.tex - notation shortcuts. Define a symbol once here so it is
+%  consistent everywhere, and can be changed in one place.
+% =====================================================================
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}          % upright d: \diff t
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % \pd{u}{t}
+\newcommand{\lap}{\nabla^2}                          % Laplacian
+\newcommand{\Jac}{J}                                 % Jacobian matrix
+\DeclareMathOperator{\tr}{tr}                        % trace
+% \det already exists in LaTeX
+
+% Gray-Scott parameters (change symbols here if you switch convention)
+\newcommand{\GSF}{F}
+\newcommand{\GSk}{k}
+\newcommand{\Du}{D_u}
+\newcommand{\Dv}{D_v}

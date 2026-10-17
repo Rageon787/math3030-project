@@ -1,0 +1,24 @@
+% =====================================================================
+%  themes/basic.tex - a plain, safe starting look.
+%  A theme file controls ONLY appearance: page size/margins, fonts,
+%  heading style, spacing, colours, header/footer.
+%  To make a new theme: copy this file, edit it, and change the
+%  \input{themes/...} line in main.tex.
+% =====================================================================
+
+% --- Page layout ------------------------------------------------------
+\usepackage[margin=2.5cm]{geometry}
+
+% --- Fonts ------------------------------------------------------------
+%  Default Latin Modern (works with pdfLaTeX and XeLaTeX).
+
+% --- Paragraphs: space between, no indent ------------------------------
+\usepackage[skip=6pt plus 1pt]{parskip}
+
+% --- Links: no coloured boxes ------------------------------------------
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black,
+  citecolor  = black,
+  urlcolor   = blue!50!black,
+}

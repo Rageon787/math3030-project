@@ -1,0 +1,44 @@
+% =====================================================================
+%  preamble.tex - functional packages only.
+%  Nothing here should change how the document *looks*; that belongs in
+%  themes/. Keep this file the same when you switch themes.
+% =====================================================================
+
+% --- Maths ------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% --- Figures & tables -------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{subcaption}   % side-by-side figures: \begin{subfigure}
+\usepackage{booktabs}     % nice tables: \toprule \midrule \bottomrule
+\usepackage{float}
+
+% --- Bibliography -----------------------------------------------------
+\usepackage[style=authoryear, backend=biber, maxcitenames=2]{biblatex}
+%  Use \textcite{turing1952} -> "Turing (1952)"
+%      \parencite{turk1991}  -> "(Turk 1991)"
+
+% --- Links & cross-references (load hyperref late, cleveref last) -----
+\usepackage{hyperref}
+\usepackage[capitalise, noabbrev]{cleveref}
+%  Use \cref{eq:gray-scott} -> "Equation 1", \cref{fig:spots} -> "Figure 2"
+
+% --- Equation numbering by section: (2.1), (2.2), ... ------------------
+\numberwithin{equation}{section}
+
+% --- Theorem-like environments ----------------------------------------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% --- Drafting helper: \todo{...} shows in red; disable before submitting
+\usepackage{xcolor}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+% \renewcommand{\todo}[1]{}   % <- uncomment to hide all TODOs

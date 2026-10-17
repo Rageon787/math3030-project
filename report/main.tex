@@ -1,0 +1,49 @@
+% =====================================================================
+%  MATH3030 Project Report
+%  Build:  latexmk          (uses .latexmkrc -> XeLaTeX + biber)
+% =====================================================================
+\documentclass[a4paper, 11pt]{article}
+
+% --- 1. Packages that do things (maths, figures, refs) ---------------
+\input{preamble}
+
+% --- 2. Notation shortcuts -------------------------------------------
+\input{macros}
+
+% --- 3. THEME: everything about how the document LOOKS ----------------
+%  To change the look, point this at a different file in themes/.
+%    themes/basic.tex  - plain LaTeX defaults (current)
+%    themes/serif.tex  - Georgia + tighter margins, like your project plan
+\input{themes/basic}
+
+% --- 4. Bibliography --------------------------------------------------
+\addbibresource{references.bib}
+
+% --- Title information -------------------------------------------------
+\title{Nonlinear Dynamics in Computer Graphics:\\
+       Reaction--Diffusion Systems in Procedural Generation}
+\author{Ragav Srinivasan}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	% TODO: write last. 4-6 sentences: what, why, how, what you found.
+	\todo{Abstract goes here.}
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-undecided}
+\input{sections/04-undecided}
+\input{sections/05-conclusion}
+
+\printbibliography
+
+% Uncomment if you need appendices (code listings, extra derivations)
+% \appendix
+% \input{sections/appendix}
+
+\end{document}
