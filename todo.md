@@ -1,0 +1,5 @@
+- Write Revised project plan for the next 2 weeks (Total time spend: 40 hours, 3 hours per day) 
+- Read about Reaction Diffusion systems.
+- Write an introduction to the topic of Reaction Diffusion Systems.
+- Write about applications of the topic.
+-  
