@@ -1,8 +1,7 @@
 # Notes for MATH3030 Project 
 
 
-## Feedback 
-Project can be submitted for feedback at any time, however these are the recommended dates for feedback from ilearn: 
+## Feedback Project can be submitted for feedback at any time, however these are the recommended dates for feedback from ilearn: 
 
 - *End of week 8*, Submit project plan for feedback 
 - *End of mid-sem break*, Submit the entire project for fedback 

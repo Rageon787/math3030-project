@@ -8,6 +8,7 @@
 To make it easier to start my research, I have structured my reading by effort: *low effort*, *medium effort* and *High Effort*: 
 
   1. *Low Effort*: Short reading times of 15 to 30 minutes, aimed to give a basic understanding of the topic I'm researching. Videos from youtube are also included in this category: 
+    - [Google](google.com)
 
   2. *Medium Effort*: Semi-long reading times of 30 Minutes to 45 Minutes, aimed to give a more technical understanding of topic with definitions and theorems related to the topic. Reading matirail include longer videos, tutorials for math concepts from textbooks / internet, etc.   
 
@@ -30,13 +31,18 @@ To make it easier to start my research, I have structured my reading by effort: 
 
    Timeline as of 23rd October:
 
-   - 23rd October (3 hours): Revised Project Plan and gather reading resources
-   - 24th October (4 hours): Read all gathered resources   
-   - 25th October ()
-   - 26th October ()
-   - 27th October ()
-   - 28th October ()
-   - 29th Ocobter ()
+   - Revised project plan, timeline and gather reading material
+   - Read material, take notes and make timeline more specific
+   - Read more material, take notes and write everything I've learend from my reading.
+   - Define the right scope for the project and start thinking about ideas for original contribution
+   - Read more material, take notes 
+   - Complete introduction section
+   - Focus on original contribution and scope related writing.
+   - Finish everything related to the scope and original contribution
+   - Send project for feedback
+   - Act on feedback and revise the project. 
+   - Proofread the project, look for issues. 
+   - Fix those issyes 
    - 8th November: Project Submission 
    
 

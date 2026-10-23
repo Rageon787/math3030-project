@@ -7,7 +7,7 @@
 - [ ] *Write* Introduction to the topic
 
 - [ ] *Define* scope for project:
-    - A generalist report is not ideal, need a target scope and outocome for the project
+    - A generalist report is not ideal.
 
 - [ ] *Submit* project for feedback:
     - Next friday
