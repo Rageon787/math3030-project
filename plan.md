@@ -1,3 +1,4 @@
+# Project plan as of 23rd October
 ## Project Title
     - Reaction Diffusion Systems: <Define Scope>  
 
@@ -8,7 +9,7 @@
 To make it easier to start my research, I have structured my reading by effort: *low effort*, *medium effort* and *High Effort*: 
 
   1. *Low Effort*: Short reading times of 15 to 30 minutes, aimed to give a basic understanding of the topic I'm researching. Videos from youtube are also included in this category: 
-    - [Wikipedia: Reaction–diffusion system](https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system) and [Turing pattern](https://en.wikipedia.org/wiki/Turing_pattern): overview of the model and its biological motivation
+    - [Wikipedia: Reaction–diffusion system](https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system) and [Turing pattern](https://en.wikipedia.org/wiki/Turing_pattern): overview of the model and its biological motivation 
     - [Coding Train: Coding Challenge #13, Reaction Diffusion Algorithm](https://thecodingtrain.com/challenges/13-reaction-diffusion) ([YouTube](https://www.youtube.com/watch?v=BV9ny785UNc)): live implementation of the Gray-Scott model in p5.js
     - [Karl Sims: Reaction-Diffusion Tutorial](https://karlsims.com/rd.html): intuitive explanation of feed/kill rates, the discrete Laplacian, and the (k, f) parameter map
 
