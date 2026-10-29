@@ -1,5 +1,4 @@
 # Reading List 
-
 Split reading by effort, start with lower effort reading first and then move to higher effort reading:
 
 1. *Low Effort* (15 minutes - 30 Minutes) 
@@ -17,19 +16,29 @@ Split reading by effort, start with lower effort reading first and then move to 
 
 
 3. *High Effort* 
-
 - [ ] Original paper on the topic.
 
 - [ ] Murray, Mathematical Biology II, Turing instability chapter — the rigorous general derivation; this is the one to save for when you’re ready to actually write your own stability analysis.
 
 - [ ] Witkin & Kass (1991) and Pearson (1993) in full, if your scope ends up needing the parameter-space/pattern-classification detail.
 
+# Notes by source 
 
-1) Wikipedia Article:
-- They are Semi-Linear Parabolic Partial Differential Equations
+## Wikipedia 
+- *Semi-Linear Parabolic Partial Differential Equations*
 - Solutions can display a wide range of behaviours including self-organized patterns called "turing patterns"
 - Reaction Diffusion Systems can have multiple components 
     - One component 
     - Two components 
     - Three or more Components 
-- Alan turing proposed: "Stable solutions in a local system can become unstable in the presence of local diffusion"
+- Alan turing proposed: "Stable solutions in a local system can become unstable in the presence of local diffusion" 
+
+- General form of Reaction Diffusion Systems:
+
+$$\partial_t q = D \nabla^2 q +  R(q)$$  
+
+
+## Research Papers
+
+
+

@@ -31,11 +31,11 @@ To make it easier to start my research, I have structured my reading by effort: 
 
 
 ## What I'll Do
-   - This research project will start of with an introduction and a background to Reaction Diffusion systems. Then I will define the scope of the project and explain why I've chosen this scope. Then we learn more about the chosen scope and show an example of the thing by applying it to some real world problem.
+- The research project will start with an introduction of the chosen research topic: *Reaction Diffusion Systems* and *Turing Patterns*, Then I plan to investigate the solutions of this family of equations and determine the behaviour. After this, I'm planning to highlight several applications of this topic that i've found from my research. In the end, I would like to wrap up this reportg with my original contribution of developing a program in python that is capable of simulating and rendering patterns from Reaction Diffusion Systems.  
 
 
 ## Original Contribution
-   - Original contribution requires the scope to be defined.
+My original contribution to this report will include using the knowledge I've gained from this research topic and apply it to develop a python program capable of producing turing patterns.  
 
 ## Timeline
    — Hours per week, specific goal per week (not just "research" or "writing" repeated).
@@ -43,22 +43,22 @@ To make it easier to start my research, I have structured my reading by effort: 
      flagged as a weakness in the CR-level sample and a strength in the HD one).
    — At least two feedback checkpoints, the first one early enough to actually inform later
      sections — not just one feedback point near the end.
+   Timeline as of 30th October:
 
-   Timeline as of 23rd October:
-
-   - Revised project plan, timeline and gather reading material
-   - Read material, take notes and make timeline more specific
-   - Read more material, take notes and write everything I've learend from my reading.
-   - Define the right scope for the project and start thinking about ideas for origincontribution
-   - Read more material, take notes 
-   - Complete introduction section
-   - Focus on original contribution and scope related writing.
-   - Finish everything related to the scope and original contribution
-   - Send project for feedback
-   - Act on feedback and revise the project. 
-   - Proofread the project, look for issues. 
-   - Fix those issyes 
-   - 8th November: Project Submission 
+   - [x] Revised project plan, timeline and gather reading material  
+   - [x] Read material, take notes and make timeline more specific
+   - [x] Read more material, take notes and write everything I've learend from my reading
+   - [x] Define the right scope for the project and start thinking about ideas for original contribution
+   - [ ] 30th October: Research and take notes    
+   -  [ ] Complete introduction, solutions and applications sections by 1st November
+   - [ ] Send Project for feedback
+   - [ ] Focus on original contribution 
+   - [ ] Finish Original Contribution by 5th November
+   - [ ] Send project for feedback before next week's class 
+   - [ ] Act on feedback and revise the project. 
+   - [ ] Proofread the project, look for issues. 
+   - [ ] Fix those issues 
+   - [ ] 8th November: Project Submission 
    
 
 
