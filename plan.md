@@ -1,6 +1,6 @@
 # Project plan as of 23rd October
 ## Project Title
-    - Reaction Diffusion Systems: <Define Scope>  
+    - Reaction Diffusion Systems and Turing Patterns   
 
 ## Overview
    - This research paper will focus on the applications of Reaction Diffusion Systems. Reaction Diffusion systems emerge from Chemsitry and Biology, however have found use in a lot of areas. The scope of this project has still not been decided yet. My original contribution will be based on this scope. Initially I planned to relate the topic to procedural generation algorithms but I feel this is narrow or maybe it suffices content for a 6 - 8 page report.
@@ -50,12 +50,12 @@ My original contribution to this report will include using the knowledge I've ga
    - [x] Read more material, take notes and write everything I've learend from my reading
    - [x] Define the right scope for the project and start thinking about ideas for original contribution
    - [ ] 30th October: Research and take notes    
-   -  [ ] Complete introduction, solutions and applications sections by 1st November
-   - [ ] Send Project for feedback
    - [ ] Focus on original contribution 
-   - [ ] Finish Original Contribution by 5th November
+   - [ ] Finish Original Contribution by 1st November
+   - [ ] Send Project for feedback
+   - [ ] Act on feedback and revise original contribution. 
+   -  [ ] Complete introductions and conclusions ections by 5th November
    - [ ] Send project for feedback before next week's class 
-   - [ ] Act on feedback and revise the project. 
    - [ ] Proofread the project, look for issues. 
    - [ ] Fix those issues 
    - [ ] 8th November: Project Submission 
