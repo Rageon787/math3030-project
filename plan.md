@@ -3,7 +3,7 @@
     - Reaction Diffusion Systems and Turing Patterns   
 
 ## Overview
-   - This research paper will focus on the applications of Reaction Diffusion Systems. Reaction Diffusion systems emerge from Chemsitry and Biology, however have found use in a lot of areas. The scope of this project has still not been decided yet. My original contribution will be based on this scope. Initially I planned to relate the topic to procedural generation algorithms but I feel this is narrow or maybe it suffices content for a 6 - 8 page report.
+   - This research paper will focus on the applications of Reaction Diffusion Systems. Reaction Diffusion systems emerge from Chemsitry and Biology, however have found use in a lot of areas. The project will provide a background to Reaction Diffusion Systems, Explore real world applications and document my own application for using it as a procedural generation algorithm (Python Program). 
 
 ## Required Reading and Sources
 To make it easier to start my research, I have structured my reading by effort: *low effort*, *medium effort* and *High Effort*: 

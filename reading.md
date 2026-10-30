@@ -16,7 +16,7 @@ Split reading by effort, start with lower effort reading first and then move to 
 
 
 3. *High Effort* 
-- [ ] Original paper on the topic.
+- [ ] Original paper on the topic. Turing's paper on Chemical basis of Morphogenesis
 
 - [ ] Murray, Mathematical Biology II, Turing instability chapter — the rigorous general derivation; this is the one to save for when you’re ready to actually write your own stability analysis.
 
