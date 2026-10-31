@@ -35,7 +35,11 @@ Split reading by effort, start with lower effort reading first and then move to 
 
 - General form of Reaction Diffusion Systems:
 
+## Science D
+
 $$\partial_t q = D \nabla^2 q +  R(q)$$  
+
+ 
 
 
 ## Research Papers

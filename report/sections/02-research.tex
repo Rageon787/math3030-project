@@ -15,6 +15,29 @@ This project explores a system of partial differential equations known as Reacti
 \end{align*}
 
 
+% Research from complexity explorer (youtube video) 
+
+% The following is an example system shown in the video:
+Reaction of two chemicals $U$ and $V$ that follow these rules:
+\begin{align*}
+	U + 2V & \to 3V \\
+	V      & \to P
+\end{align*}
+
+$V \to P$ represents the rate of decay of chemical $V$
+
+
+Thus, the reaction diffusion system based on the above rule is given by:
+\begin{align*}
+	\frac{\partial U}{\partial t}  = - UV^2 + F(1 - U) + D_u (\Delta) \\
+	\frac{\partial V}{\partial t}  = UV^2 + (F - K)V  + D_v (\Delta)
+\end{align*}
+
+Graphing the reaction diffusion system produces an interesting pattern? But i don't understand how this example works?
+
+
+
+
 
 
 
