@@ -1,44 +1,57 @@
+% !TEX root = ../main.tex
 \section{Research}
 % Rubric: exposition that synthesises the literature, in your own words.
 % Budget: ~800 words.
 
 
 \subsection{General Explanation of Reaction Diffusion System}
-This project explores a system of partial differential equations known as Reaction Diffusion Systems. Reaction Diffusion Systems emerge from chemistry and are used as a tool to model how substances from a chemical reaction *diffuse* in space. Hence, the name Reaction Diffusion Systems.
+
+% Where do RD Systems come from? 
+A reaction diffusion system model are systems of differential equations rooted in chemistry, however have seen applications in a large range of fields.
+
+% What phenomenon do they model?  
 
 % General Form of a Reaction Diffusion System: 
 \begin{align*}
 	\partial_t q = D \nabla^2 q + R(q)
 \end{align*}
 
+% Explain what the terms mean? W
 
-% Research from complexity explorer (youtube video) 
+% RD systems range from 1-component, 2-component to multi-component systems
+- What are these components?
+- What happens when there are more components
+- Interesting behaviour in 2-component systems.
+- Turing found that 2 compoonent systems produce patterns?
 
-% The following is an example system shown in the video:
-Reaction of two chemicals $U$ and $V$ that follow these rules:
-\begin{align*}
-	U + 2V & \to 3V \\
-	V      & \to P
-\end{align*}
-
-$V \to P$ represents the rate of decay of chemical $V$
+% What are the different RD System models? 
+- Gray Scott Model
+- Activator inhibitor model
+- There are more models but I need to research
 
 
-Thus, the reaction diffusion system based on the above rule is given by:
-\begin{align*}
-	\partial U = \\
-	\partial V =
-\end{align*}
+% Transition text to the next section: Gray Scott Model?
+- Why have I chosen this gray scott model for this project?
+- It produces some very interesting patterns.
+- These behaviour can be applied to simulate biological phenonmenon in a computer graphics context.
+
+
 
 % Research from "Complex Patterns in a Simple System"
-\subsection{Complex Patterns in a simple system}
-I just briefly read a paper called Complex patterns in simple system by J.E Pearson. He showed that numerical simulation on a simple reaction diffusion system in a 2 dimensional space can produce irregular spatio temporal patterns ranging from Regular Hexagon to Chaotic spatio temporal patterns. The author introduces the Gray Scott Model (Which I learned just yesterday from that video), provides a bifurcation analysis and does a numerical simulation using forward euler and discretisation to produce these patterns.
+\subsection{Gray-Scott Model}
 
-The simple system described by Pearson is the Gray Scott Model.
+The Gray-Scott Model is an example of a Reaction Diffusion System that models the reaction of two chemicals $A$ and $B$ based on a specific rule $A + 2B \to 3B$. Numerical Simulations on the model using a method known as Forward Euler Integration have been shown to produce *irregular spatio temporal patterns \cite{pearson1993}.
 
-% Perlin noise paper 
+\begin{align*}
+	\partial A & = AB \\
+	\partial B & = AB
+\end{align*}
 
-% Turk and witkins paper
+- A has a feed rate
+- B has a kill rate
+- Both chemicals have some diffusion rate that is represented by diffusion constant.
+- Similar to a prey and predator model but with one extension, A is like food for Bs that produce three Bs
+
 
 
 
