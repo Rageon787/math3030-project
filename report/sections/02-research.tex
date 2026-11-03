@@ -4,41 +4,37 @@
 % Budget: ~800 words.
 
 
-\subsection{General Explanation of Reaction Diffusion System}
 
-% Where do RD Systems come from? 
-A reaction diffusion system model are systems of differential equations rooted in chemistry, however have seen applications in a large range of fields.
 
-% What phenomenon do they model?  
+% General form of a Reaction Diffusion System Model
 
-% General Form of a Reaction Diffusion System: 
+\subsection{General Form of a Reaction Diffusion System}
 \begin{align*}
 	\partial_t q = D \nabla^2 q + R(q)
 \end{align*}
 
-% Explain what the terms mean? W
+\subsection{Reaction Diffusion Systems Model Chemical Reactions}
+% What phenomenon do they model 
+A *Reaction Diffusion System* describes a chemical reaction of two or more substances and how they diffuse with respect to time and space. In chemistry, diffusion represents a substance moving from a higher concentration region to a lower concentration region.
 
+The diffusion is given by the Laplacian $D \delta^2$. Mathematically, it is the average of neighbours.
+
+
+\subsection{1-component vs 2-component systems}
 % RD systems range from 1-component, 2-component to multi-component systems
-- What are these components?
-- What happens when there are more components
-- Interesting behaviour in 2-component systems.
-- Turing found that 2 compoonent systems produce patterns?
+Reaction diffusion systems can have multiple components. There are 1-component systems, 2-component systems and multi-component systems. Turing showed that 2 component systems result in pattern formation.
 
-% What are the different RD System models? 
+\subsection{Variants of Reaction Diffusion Systems}
 - Gray Scott Model
 - Activator inhibitor model
 - There are more models but I need to research
+It is important to note that Reaction Diffusion Systems are a family of systems of differential equations. There are multiple variants of an RD System that model different interactions of substances. For example, the activator-inhibitor model describes a biological process. The Gray Scott Model is a simplifification
 
-
-% Transition text to the next section: Gray Scott Model?
-- Why have I chosen this gray scott model for this project?
-- It produces some very interesting patterns.
-- These behaviour can be applied to simulate biological phenonmenon in a computer graphics context.
-
-
+\subsection{Transition to Gray Scott Model}
+In the next section, I will be describing a simple RD System known as the Gray Scott Model.
 
 % Research from "Complex Patterns in a Simple System"
-\subsection{Gray-Scott Model}
+\subsection{Simple RDS model: Gray Scott}
 
 The Gray-Scott Model is an example of a Reaction Diffusion System that models the reaction of two chemicals $A$ and $B$ based on a specific rule $A + 2B \to 3B$. Numerical Simulations on the model using a method known as Forward Euler Integration have been shown to produce *irregular spatio temporal patterns \cite{pearson1993}.
 
@@ -52,6 +48,14 @@ The Gray-Scott Model is an example of a Reaction Diffusion System that models th
 - Both chemicals have some diffusion rate that is represented by diffusion constant.
 - Similar to a prey and predator model but with one extension, A is like food for Bs that produce three Bs
 
+
+%TODO: Read about Turing's paper
+\subsection{RD Systems show pattern formation}
+In 1952, Turing showed that RD Systems result in pattern formations. [Elaborate]
+
+\subsection{Perlin Noise}
+The discovery of Perlin Noise comes from a surprising place. Perlin noise was invented by Ken perlin when he was working in Disney on the movie tron after he faced a "problem".
+Procedural Generation of landscapes and terrains in video games is achieved using an algorithm called Perlin Noise. Perlin Noise uses interpolation. The i
 
 
 
