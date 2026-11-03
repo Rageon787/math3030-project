@@ -64,7 +64,11 @@ Tuesday, 3rd November:
 I think i have defined a working structure of my report. I've done a good amount of research but the most difficult task for me personally is to start writing words for the report because of my subpar writing skills. I find that typing on a computer has been slow and annoying, so I'm thinking of handwriting some sections of the report on my notebook and then type it on my computer. Another idea I have is instead of writing down the sections of the report, I write down individual ideas of the project, Like a few sentences explaining Gray Scott Model or Turing patterns, etc. We will see how these ideas pan out in the end. Tuesday and Wednesday are sprint days on this project, Hopefull by the end of wednesday I would've written enough words to fill atleast half of the word limit. Anyways, enough typing and let's start writing.         
 
 **Reality**
+I read about the gray scott model and wrote a draft of that section multiple times. However, I'm not convinced I truly understand the model. There are some elements that I'm confused about. But overall the idea of writing things down first is working for me but I get very distracted after writing stuff down. 
 
+
+Wednesday 4th November:
+Progress is starting to tick upward, Have just scaffolded key ideas / topics into my report and am writing explanations for each idea. Today, I'm planning to finish writing a significant portion explaning the background and research. I don't think it will be good but I'll atleast have something submit for feedback. I haven't been able to submit my report for feedback because i had no coherent text. I wish I just managed my time properly but I have been distracted quite a lot mentally.  
 
 
 
