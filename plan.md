@@ -49,7 +49,7 @@ My original contribution to this report will include using the knowledge I've ga
    - [x] Read material, take notes and make timeline more specific
    - [x] Read more material, take notes and write everything I've learend from my reading
    - [x] Define the right scope for the project and start thinking about ideas for original contribution
-   - [ ] 30th October: Research and take notes    
+   - [x] 30th October: Research and take notes    
    - [ ] Focus on original contribution 
    - [ ] Finish Original Contribution by 1st November
    - [ ] Send Project for feedback
