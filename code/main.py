@@ -1,7 +1,28 @@
 """
-1. Solve and intpret DEs related to this project 
-2. Simulate patterns from reaction diffusion systems. 
-3. Procedural generation
+Finite difference approximation to simulate the Gray-Scott Model
 """ 
 
-print("I love writing code") 
+
+import numpy
+
+## Setup Grid Size
+GRID_SIZE = 20
+
+## Define the Gray Scott Model
+feed_rate = 0 # Feed rate for Chemical A  
+kill_rate = 0 # Kill rate for Chemical B 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
