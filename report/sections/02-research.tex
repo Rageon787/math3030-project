@@ -1,64 +1,93 @@
 % !TEX root = ../main.tex
-\section{Research}
-
+\section{Background}
+\label{sec:research}
 % Rubric: exposition that synthesises the literature, in your own words.
-% Budget: ~800 words.
+% Budget: ~900 words.
+
+\subsection{Procedural textures and Perlin noise}
+\label{sec:procedural}
+% Origin of Procedural Generation 
+Typically, Procedural Generation is done using a technique called \emph{Perlin} Noise developed by Ken Perlin at the Mathematical Animations Groups Inc. (MAGI) while working on the visual effects for the 1982 Disney Sci-fiction film \emph{Tron} \cite{perlin1985}.
+
+% How the technique works:
+The technique uses \emph{interpolation} to geographic terrain and surfaces such as  wood and marble. However, Perlin Noise is random and irregular.
+
+% Limitations of this technique
+There is no way for the artist to precisely control the output to produce organized patterns.
+
+% Ending sentence. 
+Is there a technique that is capable of producing organized patterns?
 
 
+\subsection{Reaction--diffusion systems}
+\label{sec:rd-systems}
+
+% Brief explanation of Reaction Diffusion Systems
+A reaction diffusion system is a \textit{Nonlinear Dynamical system} that models how two or more chemicals \textit{react} and \textit{diffuse} in space and time. A reaction of two chemicals results in new substances being formed while diffusion occurs when a chemical spreads from a region with lower concentration to higher concentration. [Citation Needed].
+General Form of a Reaction Diffusion System:
+\begin{equation}
+	\label{eq:rd-general}
+	\pd{\mathbf{q}}{t} = D \nabla \mathbf{q} + R(\mathbf{q}),
+\end{equation}
+$\mathbf{q}(\mathbf{x}, t)$ is the vector of concentrations for each chemical at position $\mathbf{x}$
+% Explanation of the system
+and time $t$, $R(\mathbf{q})$ is the reaction component of the sytem , and $D$ is a matrix representing coefficient of diffusions. The Laplacian $\nabla$ compares the concentration of chemicals around a neighbourhood in space and pushes the molecules of a chemical to lower concentration.
+
+% Components of a Reaction Diffusion System
+Reaction Diffusion Systems can be of multiple components. Components are defined by how many spatial dimensions are used. For instance, a single component RD systems only models the phenonmenon against one space dimension and time. Two component models are needed for producing pattenrns as shown by turing [citaion needed]. There are also many kinds of reaction diffusion system models. In this report, we will be focusing on a simple RD System named the Gray-Scott Model. (\cref{sec:gray-scott}).
+
+\subsection{Turing patterns}
+\label{sec:turing-patterns}
+\textcite{turing1952} asked how an embryo, which starts out almost uniform, develops
+regular structures. His answer was surprising: although diffusion normally smooths
+things out, if two chemicals diffuse at \emph{different} rates, diffusion can make a
+uniform state unstable, so that small random disturbances grow into a regular pattern.
+This is called a \emph{diffusion-driven} or \emph{Turing instability}, and the resulting
+patterns are called \emph{Turing patterns}. The intuition is short-range activation and
+long-range inhibition: one substance promotes its own production locally, while the
+faster-spreading effect of the other suppresses it further away, so peaks form with gaps
+between them. Reaction--diffusion is now a widely used framework for explaining
+biological patterns such as animal markings \parencite{kondo2010}.
+
+% How turing patterns are connected to computer graphics
+The idea entered computer graphics in 1991. \textcite{turk1991} simulated
+reaction--diffusion directly on the surface of a 3D model, so the texture fits the shape
+without distortion, and combined several systems to produce leopard rosettes and giraffe
+patches. \textcite{witkin1991} extended the method with direction-dependent and
+spatially varying diffusion. Both show that reaction--diffusion is a practical texture
+technique, not just a mathematical curiosity.
+
+\subsection{The Gray--Scott model}
+\label{sec:gray-scott}
+The Gray--Scott model was introduced as a model of an autocatalytic chemical reaction [citaiton needed here].
+in a continuously fed, well-mixed tank \parencite{grayscott1984}. The chemical rule proposed in the gray scott model is a simplifciation and not an accurate one.
+\begin{equation}
+	\label{eq:gs-reactions}
+	U + 2V \to 3V, \qquad V \to P,
+\end{equation}
+
+% My interpretation of this model
+\begin{itemize}
+	\item U reacts 2 molecules of V to produce 3V.
+	\item Therefore, the model is similar to a prey-predator model?
+	\item V also get killed by kill rate.
+	\item U is constantly fed into a well mixed tank.
+\end{itemize}
+
+\begin{equation}
+	\label{eq:gray-scott}
+	\begin{aligned}
+		\pd{U}{t} & = \Du \lap U - UV^2 + \GSF(1 - U),    \\
+		\pd{V}{t} & = \Dv \lap V + UV^2 - (\GSF + \GSk)V.
+	\end{aligned}
+\end{equation}
 
 
-% General form of a Reaction Diffusion System Model
-
-\subsection{General Form of a Reaction Diffusion System}
-\begin{align*}
-	\partial_t q = D \nabla^2 q + R(q)
-\end{align*}
-
-\subsection{Reaction Diffusion Systems Model Chemical Reactions}
-% What phenomenon do they model 
-A *Reaction Diffusion System* describes a chemical reaction of two or more substances and how they diffuse with respect to time and space. In chemistry, diffusion represents a substance moving from a higher concentration region to a lower concentration region.
-
-The diffusion is given by the Laplacian $D \delta^2$. Mathematically, it is the average of neighbours.
+The term $UV^2$ is the rate of the first reaction. It is removed from $U$ and added to
+$V$, $V$ consumes $U$ to produce another one of itself. The term
+$\GSF(1 - U)$ is the \emph{feed}: how much $U$ is added to the container, pushing $U$ back
+towards its reservoir value of $1$.  The equation is dimensionless.
 
 
-\subsection{1-component vs 2-component systems}
-% RD systems range from 1-component, 2-component to multi-component systems
-Reaction diffusion systems can have multiple components. There are 1-component systems, 2-component systems and multi-component systems. Turing showed that 2 component systems result in pattern formation.
-
-\subsection{Variants of Reaction Diffusion Systems}
-- Gray Scott Model
-- Activator inhibitor model
-- There are more models but I need to research
-It is important to note that Reaction Diffusion Systems are a family of systems of differential equations. There are multiple variants of an RD System that model different interactions of substances. For example, the activator-inhibitor model describes a biological process. The Gray Scott Model is a simplifification
-
-\subsection{Transition to Gray Scott Model}
-In the next section, I will be describing a simple RD System known as the Gray Scott Model.
-
-% Research from "Complex Patterns in a Simple System"
-\subsection{Simple RDS model: Gray Scott}
-
-The Gray-Scott Model is an example of a Reaction Diffusion System that models the reaction of two chemicals $A$ and $B$ based on a specific rule $A + 2B \to 3B$. Numerical Simulations on the model using a method known as Forward Euler Integration have been shown to produce *irregular spatio temporal patterns \cite{pearson1993}.
-
-\begin{align*}
-	\partial A & = AB \\
-	\partial B & = AB
-\end{align*}
-
-- A has a feed rate
-- B has a kill rate
-- Both chemicals have some diffusion rate that is represented by diffusion constant.
-- Similar to a prey and predator model but with one extension, A is like food for Bs that produce three Bs
-
-
-%TODO: Read about Turing's paper
-\subsection{RD Systems show pattern formation}
-In 1952, Turing showed that RD Systems result in pattern formations. [Elaborate]
-
-\subsection{Perlin Noise}
-The discovery of Perlin Noise comes from a surprising place. Perlin noise was invented by Ken perlin when he was working in Disney on the movie tron after he faced a "problem".
-Procedural Generation of landscapes and terrains in video games is achieved using an algorithm called Perlin Noise. Perlin Noise uses interpolation. The i
-
-
-
-
-
+% This still needs to be expanded 
+\cite{pearson1993} did a numerical simulation of the Gray Scott Model and found spatio-irregular patterns.

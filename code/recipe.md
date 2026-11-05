@@ -21,6 +21,9 @@ $$
 
 
 # Five point stencil Approximation for U(x, y) 
+
+Finite difference approximation using a 5 point stencil 
 ```
 U[i][j] = (u[i - 1][j] + u[i + 1][j] + u[i][j - 1] + u[i][j + 1] - 4 u[i][j]) / h^2 
 ```
+

@@ -5,6 +5,8 @@ Finite difference approximation to simulate the Gray-Scott Model
 
 import numpy
 
+
+
 ## Setup Grid Size
 GRID_SIZE = 20
 

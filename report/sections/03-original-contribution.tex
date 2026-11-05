@@ -7,53 +7,29 @@
 %TODO: What is original Contribution?
 % Your contribution to this project? What have you done from everything you have learned.  
 
-%TODO: Examples of Original Contribution 
-% Can I do some computations?  
-% Can I do a proof myself rather than quoting 
-% Can I apply theory to solve a concrete problem 
-% Can I connect two ideas in a way sources do not 
-% Change in hypothesis: Does something interest happen or break?
-% Can I implement a program that applies the theory?
-
 \subsection*{Stability Analysis}
 
 % Step 1: Tell the reader what I'm going to do in this section
 The Gray-Scott system is a nonlinear dynamical system whose equations cannot be solved analytically. Therefore, we consider a method known as stability analysis which will predict the behaviour of the system and precisely identify the set of values for the parameters $F$ and $k$ that lead to the turing patterns we hinted in the previous section. The paramteter values are found using bifurcation analysis
-\\
-Firstly, we will drop the diffusion and study the system in a spatially uniform state. Then we add back the diffusion and investigate how it destabilizes an otherwise stable system of equations.
 
-% Step 2: Equilibrium points of the Gray Scott Model without diffusion 
-
-
-% Step 3: Jacobian determinant analysis 
-
-% Step 4: Add diffusion into the equations and see what happens
-
-% Step 5: Tell the reader the implications of what I just did 
-
-
+Steps I'll be doing for stability analysis:
+\begin{itemize}
+	\item  Firstly, I will drop the diffusion terms to show that the system is uniformly stable.
+	\item But before we do that, I solve the system for it's equillibrium points.
+	\item Then classify the system by substituting equillibrium into the jacobian.
+	\item Is it stable or unstable?
+	\item The second part of this analysis will explain what happens when we add back the diffusion term.
+	\item Does the system become unstable? If it does we do a bifurcation analysis to find which parameters $F$ and $k$ will result in turning patterns.
+\end{itemize}
 \subsection*{Numerical Simulation of the Gray Scott Equation}
-
 % Describe why you're doing a numerical simulation
 This subsection will document my attempt at a numerical simulation of the Gray Model. The numerical simulation is done using a finite difference approximation using 5 point stencil.The code for the simulation is in the appendix.
-\\
-
-
 % Explain the Methodology
-I will be using a finite difference approximation scheme with a 5 point stencil, which is given by:
-\begin{align*}
-	U_{ij} = \frac{1}{h^2}(U_{i + 1,j} + U_{1} + U_{2} + U_{3} + U_{4})
-\end{align*}
-\begin{align*}
-	V_{ij} = \frac{1}{h^2}(V_{i + 1,j} + V_{1} + V_{2} + V_{3} + V_{4})
-\end{align*}
-
-
+I use the method used by pearson in his paper on Complex patterns in a simple system.
 % Figures showing the results of the simulation 
-
-
-
+I need to complete this section
 % Discussion of the results 
+Then I will discuss the results and implications on what i just did.
 
 
 
