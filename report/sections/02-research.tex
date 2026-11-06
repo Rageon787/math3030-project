@@ -19,7 +19,7 @@ There is no way for the artist to precisely control the output to produce organi
 Is there a technique that is capable of producing organized patterns?
 
 
-\subsection{Reaction--diffusion systems}
+\subsection{Reaction Diffusion systems}
 \label{sec:rd-systems}
 
 % Brief explanation of Reaction Diffusion Systems
@@ -38,56 +38,36 @@ Reaction Diffusion Systems can be of multiple components. Components are defined
 
 \subsection{Turing patterns}
 \label{sec:turing-patterns}
-\textcite{turing1952} asked how an embryo, which starts out almost uniform, develops
-regular structures. His answer was surprising: although diffusion normally smooths
-things out, if two chemicals diffuse at \emph{different} rates, diffusion can make a
-uniform state unstable, so that small random disturbances grow into a regular pattern.
-This is called a \emph{diffusion-driven} or \emph{Turing instability}, and the resulting
-patterns are called \emph{Turing patterns}. The intuition is short-range activation and
-long-range inhibition: one substance promotes its own production locally, while the
-faster-spreading effect of the other suppresses it further away, so peaks form with gaps
-between them. Reaction--diffusion is now a widely used framework for explaining
-biological patterns such as animal markings \parencite{kondo2010}.
 
-% How turing patterns are connected to computer graphics
-The idea entered computer graphics in 1991. \textcite{turk1991} simulated
-reaction--diffusion directly on the surface of a 3D model, so the texture fits the shape
-without distortion, and combined several systems to produce leopard rosettes and giraffe
-patches. \textcite{witkin1991} extended the method with direction-dependent and
-spatially varying diffusion. Both show that reaction--diffusion is a practical texture
-technique, not just a mathematical curiosity.
+The idea of this subsection is to discuss a research paper from Alan Turing when he was discovering pattern formation in an Embryo \cite{turing1952}. The paper leads to a result called \emph{Turing Instability} which proposes that adding diffusion to a Stable Nonlinear Dynamical System could produce interesting spatial patterns called \emph{Turing Patterns} [Need to write in detail].
 
-\subsection{The Gray--Scott model}
+
+\subsection{The Gray-Scott model}
 \label{sec:gray-scott}
 The Gray--Scott model was introduced as a model of an autocatalytic chemical reaction [citaiton needed here].
-in a continuously fed, well-mixed tank \parencite{grayscott1984}. The chemical rule proposed in the gray scott model is a simplifciation and not an accurate one.
+in a continuously fed, well-mixed tank \parencite{grayscott1984}. The chemical rule proposed in the gray scott model is a simplification and isn't accurate in real life.
+
 \begin{equation}
 	\label{eq:gs-reactions}
 	U + 2V \to 3V, \qquad V \to P,
 \end{equation}
 
-% My interpretation of this model
-\begin{itemize}
-	\item U reacts 2 molecules of V to produce 3V.
-	\item Therefore, the model is similar to a prey-predator model?
-	\item V also get killed by kill rate.
-	\item U is constantly fed into a well mixed tank.
-\end{itemize}
-
+The
 \begin{equation}
 	\label{eq:gray-scott}
 	\begin{aligned}
-		\pd{U}{t} & = \Du \lap U - UV^2 + \GSF(1 - U),    \\
-		\pd{V}{t} & = \Dv \lap V + UV^2 - (\GSF + \GSk)V.
+		\frac{\partial U}{\partial t} & = D_u \nabla^2 U - UV^2 + F(1 - U), \\
+		\frac{\partial V}{\partial t} & = D_v \nabla^2 V + UV^2 - (F + k)V,
 	\end{aligned}
 \end{equation}
+\begin{itemize}
+	\item $U$ and $V$ are the chemicals in this reaction and their values correspond to their concentration.
+	\item $D_u$ and $D_v$ represent the diffusion coefficient of each element
+	\item $F$ is the feed rate of $U$ for $V$.
+	\item $k$ defines the rate of decay for $V$.
+\end{itemize}
 
-
-The term $UV^2$ is the rate of the first reaction. It is removed from $U$ and added to
-$V$, $V$ consumes $U$ to produce another one of itself. The term
-$\GSF(1 - U)$ is the \emph{feed}: how much $U$ is added to the container, pushing $U$ back
-towards its reservoir value of $1$.  The equation is dimensionless.
 
 
 % This still needs to be expanded 
-\cite{pearson1993} did a numerical simulation of the Gray Scott Model and found spatio-irregular patterns.
+\cite{pearson1993} did a numerical simulation of the Gray Scott Model and found spatio-irregular patterns [Need to expand].
