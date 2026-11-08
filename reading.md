@@ -33,16 +33,54 @@ Split reading by effort, start with lower effort reading first and then move to 
     - Three or more Components 
 - Alan turing proposed: "Stable solutions in a local system can become unstable in the presence of local diffusion" 
 
-- General form of Reaction Diffusion Systems:
 
-## Science D
+Taking down notes from my reading, grouped by each resource:
 
-$$\partial_t q = D \nabla^2 q +  R(q)$$  
+### Chapter 4: Fractals, noise and agents with applications to landscapes.
 
- 
+- Describes stochastic methods for terrain generations
+    - Diamond Square 
+    - Perlin Noise
+
+- Video games have different terrain requirements. For instance, in games like GTA 5, a level of realism is expected. 
+
+- Voxels:
+    - Dividing the structure of terrain by cubes. It's similar to how we divide continous functions in calculus.
+
+- "Minecraft has unusually large voxels."
+    - Referring to the blockyness of minecraft.
 
 
-## Research Papers
+
+## Advantages of procedural noise functions 
+``` 
+Procedural noise has many advantages: it is typically very
+fast to evaluate, often allowing evaluation of complex and
+intricate patterns on-the-fly, and it has a very low memory
+footprint, making it an ideal candidate for compactly gener-
+ating complex visual detail. In addition, with a suitable set of
+parameters, procedural noise can be used to easily generate a
+large number of different patterns. Finally, procedural noise
+is often randomly accessible, so that it can be evaluated inde-
+pendently at every point in constant time. This last property
+has always been a great advantage, but takes on even higher
+significance with the advent of massively parallel GPU’s and
+multi-core CPU systems.
+```
+
+
+```
+Noise is the random number generator of computer graph-
+ics. It is a random and unstructured pattern, and is useful
+wherever there is a need for a source of extensive detail
+that is nevertheless lacking in evident structure. Random pat-
+terns are often described in the frequency domai
+```
+"Noise creates random and unstructured patterns".
+
+
+
+
 
 
 

@@ -21,7 +21,7 @@
 
 % --- Title information -------------------------------------------------
 \title{Nonlinear Dynamics in Computer Graphics:\\
-       Reaction Diffusion Systems in Procedural Generation}
+       Reaction--Diffusion Systems in Procedural Generation}
 \author{Ragav Srinivasan}
 \date{\today}
 
@@ -30,18 +30,175 @@
 \maketitle
 
 \begin{abstract}
-	% TODO: write last. 4-6 sentences: what, why, how, what you found.
-	\todo{Abstract goes here.}
+	We start by ti
 \end{abstract}
 
-\input{sections/01-introduction}
-\input{sections/02-research}
-\input{sections/03-original-contribution}
-\input{sections/04-conclusion}
+\section{Introduction}
+\label{sec:introduction}
+% Structure 
+\subsection{Structure of this report}
+% Describe each section in their own line:
+\Cref{sec:background} gives the background on reaction--diffusion systems and the phenomena they
+model. We then discuss a famous result of Alan Turing on reaction--diffusion systems, and finally
+focus on a simple reaction--diffusion system called the Gray--Scott model.
+\Cref{sec:simulations} is my original contribution: a stability analysis of the Gray--Scott model
+and a numerical simulation of it.
+\Cref{sec:conclusion} gives the conclusion and possible extensions of this project.
+\section{Background}
+\label{sec:background}
+
+
+
+\subsection{Procedural Generation}
+\label{sec:procedural}
+
+\begin{itemize}
+	\item Procedural Generation is a technique in Computer Graphics that generates smooth textures and landscapes in real time. Artists and Developers can create \emph{lifelike} 3D terrains with mountains, rivers and vegetation without the need to design or program them manually. To the player, these terrains will generate on the fly no pre-processing required.
+	\item The most famous use case of Procedural Generation can be found in Minecraft which makes heavy use of procedural techniques to generate worlds and cave systems.
+	\item Procedural generation is a broad technique that encompasses many algorithms. However, we will particularly looking at one specific algorithm: \emph{Perlin Noise}.
+\end{itemize}
+
+
+% Origin of Perlin Noise 
+Perlin Noise was devised by Ken Perlin at The Mathematical Animation Group while working for the 1982 Disney Sci-fi film \emph{Tron}. Perlin's noise function still sees widespread use even in modern day games.
+
+% Mathematics behind Perlin noise
+\todo{Maths behind perlin noise}
+\begin{align*}
+	noise(x) = x
+\end{align*}
+% Use cases of Perlin noise 
+
+\begin{itemize}
+	\item Perlin noise is a continuous function that uses
+\end{itemize}
+
+%  Limitations of noise functions:
+Textures created by Perlin Noise and other noise functions are random and lack structure \cite{lagae2010}. This is a useful feature for landscapes but if we wanted a zebra whose stripes have self organized patterns, then a different approach is in order.
+
+
+\subsection{Reaction Diffusion Systems}
+\label{sec:rd-systems}
+
+% Segway to Reaction Diffusion Systems 
+
+This brings us to the heart of this report, \emph{Reaction Diffusion Systems}. These are Nonlinear dynamical systems originating from the world of Chemistry that models the intereactions between multiple chemical susbtances and their diffusivity with resepct to space and time.
+\\
+\emph{Diffusion} refers to the spread of chemical substances between low and high concentration. It turns out adding an element of diffusion leads to some very interesting pattern formation.
+\\
+The General Form of Reaction Diffusion Systems is given by:
+
+\begin{equation} \label{eq:rd-general}
+	\pd{\mathbf{q}}{t} = D \nabla^2 \mathbf{q} + R(\mathbf{q}),
+\end{equation}
+
+
+% Explanation of the system
+\begin{itemize}
+	\item The equation is \emph{dimensionless}
+	\item $\mathbf{q}$ is a vector of unknown vector functions representing the concentrations of an array of chemical substances.
+	\item $D$ gives the diffusivity for each chemical
+	\item $R(\mathbf{q}$) is another vector functions that describes all the chemical reactions.
+\end{itemize}
+
+There are several systems that fit the criteria of Reaction Diffusion Systems. Notably, the activator eqution, some russian equation, etc.
+
+
+\subsection{Turing patterns}
+\label{sec:turing-patterns}
+\todo{Define Turing patterns} \\
+Turing patterns are self organized patterns that resembles structures found in nature. \\
+\todo{Cite turing's 1952 discovery on chemical morphogenesis}
+
+
+\subsection{The Gray-Scott model}
+\label{sec:gray-scott}
+
+The Gray Scott model is a simple reaction diffusion system that models the interaction between chemicals $U$ and $V$ based on the following rule:
+
+\begin{align*}
+	U + 2V \to 3V \\
+	V \to P
+\end{align*}
+
+
+% General form of the Gray Scott Model
+\begin{align*}
+	\frac{\partial U}{\partial t} & = -UV^2 + D_u \nabla^2 + f(1 - U) \\
+	\frac{\partial V}{\partial t} & = UV^2 + D_v \nabla^2 + (k + f)V
+\end{align*}
+% Explaination of the terms 
+\begin{itemize}
+	\item $D_u$ and $D_v$ is the diffusivity of chemicals $U$ and $V$.
+	\item $U$ and $V$ are the unknown vector functions representing the concentrations of the respective chemicals in space and time.
+	\item $f$ is the feed rate of chemical $U$ for $V$
+	\item $k$ is the decay rate for chemical $V$.
+\end{itemize}
+
+% What we are going to do with this model 
+The broader goal of this project is to explain pattern formation rising from Reaction Diffusion Systems but the narrower goal is to find which parameter values of $F$ and $k$. Therefore, In the end we will build a parameter map of the Gray Scott Model that can identify which patterns we get.
+
+
+\section{Original Contribution}
+\label{sec:simulations}
+
+%TODO: What is original Contribution?
+% Your contribution to this project? What have you done from everything you have learned.
+
+\subsection{Stability analysis}
+\label{sec:stability}
+
+
+% Definition of Stability Analysis
+A stability analysis gives us a guess on the behaviour of the system. For instance, a system is said to be stable if solutions move away from the equillibrium point, otherwise an unstable system is when solutions move away from the equillibrium point.
+
+% Why are we studying the stability analysis for the gray scott model
+The point of this stability analysis is to show how adding a diffusion effect can destabilize a system. This is also called as Turing instability.
+
+% How do we do a Stability Analysis:
+In this case, we will be doing a stability analysis twice. The first part will prove the Gray Scott Model is stable when we drop diffusion. In the second part we will show that the Gray Scott Model's turing unstable after adding the diffusion constant.
+
+The steps of the stability analysis are:
+\begin{itemize}
+	\item Drop the diffusion terms and study the spatially uniform states of the system.
+	\item Solve the system for its equilibrium points.
+	\item Classify each equilibrium point by substituting it into the Jacobian: is it stable or unstable?
+	\item Use bifurcation analysis to find where, in the $(F, k)$ plane, the equilibria appear or change stability.
+	\item Add the diffusion terms back and ask whether a stable uniform state becomes unstable. If it does,
+	      find which parameters $F$ and $k$ result in Turing patterns.
+
+	      The jacobian is the matrix of partial derivatives.
+	      \begin{align*}
+		      J = \begin{pmatrix}
+			          U_{xx}, U_{xy} \\
+			          U_{xy}, U_{yy}
+		          \end{pmatrix}
+	      \end{align*}
+
+\end{itemize}
+
+\subsection{Numerical simulation of the Gray-Scott model}
+\label{sec:numerical}
+% Describe why you're doing a numerical simulation
+This subsection documents my numerical simulation of the Gray--Scott model. The simulation uses a
+finite difference approximation based on a 5-point stencil to approximate the Laplacian at each cell
+of a $20 \times 20$ grid. The code for the simulation is in the appendix.
+\todo{Method details, figures and discussion.}
+\section{Conclusion}
+\label{sec:conclusion}
+\todo{Summarise what the stability analysis predicts, how well the simulation matches it, and what
+	this means for someone choosing $F$ and $k$ to generate textures. Possible extensions: varying the
+	diffusion ratio $D_u/D_v$, comparing the predicted and simulated spot spacing, and running the
+	simulation on a 3D surface as in \textcite{turk1991}.}
 
 \printbibliography
 
-% Uncomment if you need appendices (code listings, extra derivations)
-% \appendix \input{sections/appendix}
 
+%% Introducing Procedural Generation 
+Procedural Generation is a broad area in Computer Graphics that involves the generation of 3D terrains \cite{lagae2010}. This lets  artists and game developers can create realistic 3D terrains with mountains, rivers and vegetation without the need to design or program them manually. To the player, these terrains will generate on the fly with no pre-processing required. The most famous use case of procedural generation can be found in the video game Minecraft which uses it heavily.
+
+Procedural Generation is a broad area in Computer Graphics that involves the generation of 2D and 3D textures in real time. Artists and developers can create rali
+
+\section{Appendix}
 \end{document}
+
