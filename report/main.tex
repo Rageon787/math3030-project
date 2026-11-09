@@ -158,28 +158,58 @@ The point of this stability analysis is to show how adding a diffusion effect ca
 % How do we do a Stability Analysis:
 In this case, we will be doing a stability analysis twice. The first part will prove the Gray Scott Model is stable when we drop diffusion. In the second part we will show that the Gray Scott Model's turing unstable after adding the diffusion constant.
 
-The steps of the stability analysis are:
-\begin{itemize}
-	\item Drop the diffusion terms and study the spatially uniform states of the system.
-	\item Solve the system for its equilibrium points.
-	\item Classify each equilibrium point by substituting it into the Jacobian: is it stable or unstable?
-	\item Use bifurcation analysis to find where, in the $(F, k)$ plane, the equilibria appear or change stability.
-	\item Add the diffusion terms back and ask whether a stable uniform state becomes unstable. If it does,
-	      find which parameters $F$ and $k$ result in Turing patterns.
 
-	      The jacobian is the matrix of partial derivatives.
-	      \begin{align*}
-		      J = \begin{pmatrix}
-			          U_{xx}, U_{xy} \\
-			          U_{xy}, U_{yy}
-		          \end{pmatrix}
-	      \end{align*}
+%% Maths for Stability analysis 
+1. Setup the Gray Scott system  as follows:
+\begin{align*}
+	\dot{U} = -UV^2 + D_u \nabla^2 + F(1 - U) \\
+	\dot{V} = UV^2 + D_v \nabla^2 + (F + k)V
+\end{align*}
 
-\end{itemize}
+2. What are the equillibrium points:
+From inspection, there are two $(0, 0)$ and $(1, 0)$.
+
+3. Jacobian of the gray-scott model:
+\begin{align*}
+	J = \begin{pmatrix}
+		    \partial_{u} \dot{U} & \partial_v  \dot{U}  \\
+		    \partial_{u} \dot{V} & \partial_{v} \dot{V}
+	    \end{pmatrix}
+	=
+	\begin{pmatrix}
+		- V^2 - F & -2UV     \\
+		V^2       & (F + k)V
+	\end{pmatrix}
+\end{align*}
+
+4. Substitute equillibrium points into jacobian
+
+First equillibrium point:
+\begin{align*}
+	J(0, 0) = \begin{pmatrix}
+		          -F & 0       \\
+		          0  & (F + k)
+	          \end{pmatrix}
+\end{align*}
+\textit{Trace:} $Tr(J(0,0)) = -F + (F + k)$  and Determinant $det(J(0,0)) = -F(F + k)$ \\
+Second equillibrium point:
+\begin{align*}
+	J(1, 0) = \begin{pmatrix}\end{pmatrix}
+\end{align*}
+
+5. define p = Tr J and q = det J and use the $p^2 - q$ thing to find the stability of these points.
+- we should expect the system to be stable without diffusion.
+
+Part 2: We do the same analysis with the diffusion terms added back?
+
+1. Equillibrium points
+2. Jacobian
+3. Tr J and Det J of the jacobian
+4. Is it stable or unstable.
 
 \subsection{Numerical simulation of the Gray-Scott model}
 \label{sec:numerical}
-% Describe why you're doing a numerical simulation
+% Movtiation for doing a numerical simulation
 This subsection documents my numerical simulation of the Gray--Scott model. The simulation uses a
 finite difference approximation based on a 5-point stencil to approximate the Laplacian at each cell
 of a $20 \times 20$ grid. The code for the simulation is in the appendix.
