@@ -52,29 +52,47 @@ and a numerical simulation of it.
 \subsection{Procedural Generation}
 \label{sec:procedural}
 
-\begin{itemize}
-	\item Procedural Generation is a technique in Computer Graphics that generates smooth textures and landscapes in real time. Artists and Developers can create \emph{lifelike} 3D terrains with mountains, rivers and vegetation without the need to design or program them manually. To the player, these terrains will generate on the fly no pre-processing required.
-	\item The most famous use case of Procedural Generation can be found in Minecraft which makes heavy use of procedural techniques to generate worlds and cave systems.
-	\item Procedural generation is a broad technique that encompasses many algorithms. However, we will particularly looking at one specific algorithm: \emph{Perlin Noise}.
-\end{itemize}
+Procedural generation is a broad set of techniques in computer graphics that is used to create visuals, such as pseudo-realistic textures, terrains and surfaces on the fly. Instead of an artist painting every surface or sculpting every mountain, a developer writes a short program controlled by a few parameters, and the computer produces the detail, often on the fly as the player explores. This makes it possible to build large, \emph{lifelike} landscapes with mountains, rivers and vegetation at very little cost in memory and artist time \parencite{lagae2010}.
 
 
-% Origin of Perlin Noise 
-Perlin Noise was devised by Ken Perlin at The Mathematical Animation Group while working for the 1982 Disney Sci-fi film \emph{Tron}. Perlin's noise function still sees widespread use even in modern day games.
+Procedural generation is a broad set of techniques in computer graphics that is used to create visuals, such as pseudo-realistic textures, terrains and surfaces on the fly. It eliminates the need for an artists to manually prototype and create their own worlds, Instead, a deterministic function is used to produce the desired visuals, on the fly as the player explores. This makes it possible to build large, \emph{lifelike} landscapes with mountains, rivers and vegetation with little impact to memory. \parencite{lagae2010}.
 
-% Mathematics behind Perlin noise
-\todo{Maths behind perlin noise}
-\begin{align*}
-	noise(x) = x
-\end{align*}
-% Use cases of Perlin noise 
 
-\begin{itemize}
-	\item Perlin noise is a continuous function that uses
-\end{itemize}
+% TODO: add a source for the Minecraft example, or remove it.
+A well-known example is Minecraft, which uses procedural techniques to generate its worlds and cave systems.
 
-%  Limitations of noise functions:
-Textures created by Perlin Noise and other noise functions are random and lack structure \cite{lagae2010}. This is a useful feature for landscapes but if we wanted a zebra whose stripes have self organized patterns, then a different approach is in order.
+Procedural generation is based on many algorithms. In this section we study one of the most widely used algorithms: \emph{Perlin Noise}.
+
+\paragraph{Origin.}
+% TODO: cite a source for the Tron / MAGI / Academy Award facts (e.g. Perlin's NYU biography page).
+Ken Perlin devised his noise function after working on the visual effects for Disney's 1982 film \emph{Tron} at Mathematical Applications Group, Inc.\ (MAGI), and published it in 1985 \parencite{perlin1985}. His discovery of technique was so pivotal to the industry that it earned him an Academy Award for Technical Achievement, and still sees widespread in modern day films and video games. \parencite{lagae2010}.
+
+\paragraph{How Perlin noise works.}
+Consider one dimension first. At every integer $i$ we fix a random gradient (slope) $g_i$. For a point $x$ between $i$ and $i+1$, let $t = x - i \in [0,1]$. Each of the two neighbouring lattice points contributes a straight line through zero with its own slope, and the two lines are blended together:
+\begin{equation}
+	\label{eq:perlin-1d}
+	\mathrm{noise}(x) = \bigl(1 - s(t)\bigr)\, g_i\, t \;+\; s(t)\, g_{i+1}\,(t - 1),
+	\qquad
+	s(t) = 6t^5 - 15t^4 + 10t^3 .
+\end{equation}
+The blending curve $s$ rises smoothly from $0$ to $1$, and its first and second derivatives vanish at $t = 0$ and $t = 1$, so neighbouring pieces join without visible creases \parencite{perlin2002}. Two properties follow directly from \cref{eq:perlin-1d}: the noise is zero at every integer, and its bumps all have roughly the same width, about one lattice cell (\cref{fig:perlin}a). In two dimensions the idea is the same: each corner $\mathbf{c}$ of a grid square carries a random unit vector $\mathbf{g}_{\mathbf{c}}$, the corner contributes $\mathbf{g}_{\mathbf{c}} \cdot (\mathbf{x} - \mathbf{c})$, and the four contributions are blended with $s$ in each direction (\cref{fig:perlin}b).
+
+\paragraph{Building textures from noise.}
+A single layer of noise is smooth but bland. Natural surfaces have detail at many scales, so copies of the noise at doubled frequency and halved amplitude are added together:
+\begin{equation}
+	\label{eq:fbm}
+	\mathrm{fBm}(\mathbf{x}) = \sum_{j=0}^{n-1} \frac{1}{2^j}\, \mathrm{noise}\!\left(2^j \mathbf{x}\right),
+\end{equation}
+which is known as fractal Brownian motion (\cref{fig:perlin}c). Replacing $\mathrm{noise}$ by $\lvert \mathrm{noise} \rvert$ in \cref{eq:fbm} gives a ``turbulence'' function, and feeding it into a simple formula produces a material. Perlin's classic marble, for example, is $\sin\bigl(x_1 + \mathrm{turbulence}(\mathbf{x})\bigr)$ \parencite{perlin1985}
+
+% 	\centering
+% 	\includegraphics[width=\textwidth]{perlin_noise.png}
+% 	\caption{Perlin noise, generated with our own implementation. (a) One-dimensional gradient noise, \cref{eq:perlin-1d}; it is zero at every lattice point (dots). (b) Two-dimensional Perlin noise. (c) Six octaves summed, \cref{eq:fbm}. (d) Marble, $\sin(x_1 + \mathrm{turbulence})$, after \textcite{perlin1985}.}
+% 	\label{fig:perlin}
+% \end{figure}
+
+\paragraph{Limitations.}
+Textures created with Perlin noise, and with noise functions in general, are random and have no organised structure \parencite{lagae2010}. Every bump has roughly the same size, but the bumps are placed at random: nothing makes spots evenly spaced or stripes run parallel. This is ideal for clouds, terrain or marble, but if we want a zebra whose stripes organise themselves, a different approach is needed. That approach is the subject of \cref{sec:rd-systems}.
 
 
 \subsection{Reaction Diffusion Systems}
@@ -114,12 +132,19 @@ Turing patterns are self organized patterns that resembles structures found in n
 \subsection{The Gray-Scott model}
 \label{sec:gray-scott}
 
-The Gray Scott model is a simple reaction diffusion system that models the interaction between chemicals $U$ and $V$ based on the following rule:
+% Describes the problem
+The setup for the Gray-Scott model supposes that we have a \emph{Well mixed tank} of chemical $U$. Then the concentration of $U$. We are interested in knowing the concentration of the chemical in space and time. For this, we define a vector function $u(x, t)$  that is currently unknown. We assume that chemical $U$ has the same concentration in the spatial domain except for a small patch in the center of the tank where chemical $V$ is introduced into the system. \\
+\\
+In chemistry, The relationship between $U$ and $V$ is defined as \textit{Autocatalysis} where the resulting product is a reactant, as is the case with $V$ is in the reaction shown below. The relationship is akin to that of \textit{prey and predator} models.
 
-\begin{align*}
-	U + 2V \to 3V \\
-	V \to P
-\end{align*}
+\begin{equation*}
+	\underbrace{U + 2V \to 3V}_{\text{$V$ reacts to $U$ to make more of itself}}
+	\qquad
+	\underbrace{V \to P}_{\text{decay}}
+\end{equation*}
+
+
+The second rule suggests decay for $V$ by turning into an inert product $P$ which means that it becomes a non reactive substance.
 
 
 % General form of the Gray Scott Model
@@ -142,15 +167,18 @@ The broader goal of this project is to explain pattern formation rising from Rea
 \section{Original Contribution}
 \label{sec:simulations}
 
-%TODO: What is original Contribution?
-% Your contribution to this project? What have you done from everything you have learned.
-
 \subsection{Stability analysis}
 \label{sec:stability}
 
 
 % Definition of Stability Analysis
 A stability analysis gives us a guess on the behaviour of the system. For instance, a system is said to be stable if solutions move away from the equillibrium point, otherwise an unstable system is when solutions move away from the equillibrium point.
+
+
+Nonlinear Dynamical Systems are hard to solve analytically.
+
+
+
 
 % Why are we studying the stability analysis for the gray scott model
 The point of this stability analysis is to show how adding a diffusion effect can destabilize a system. This is also called as Turing instability.
@@ -190,15 +218,25 @@ First equillibrium point:
 		          -F & 0       \\
 		          0  & (F + k)
 	          \end{pmatrix}
-\end{align*}
-\textit{Trace:} $Tr(J(0,0)) = -F + (F + k)$  and Determinant $det(J(0,0)) = -F(F + k)$ \\
-Second equillibrium point:
-\begin{align*}
-	J(1, 0) = \begin{pmatrix}\end{pmatrix}
-\end{align*}
+\end{align*} \\
 
-5. define p = Tr J and q = det J and use the $p^2 - q$ thing to find the stability of these points.
-- we should expect the system to be stable without diffusion.
+$p = Tr(J(0,0)) = k$  and  $q = \det(J(0,0)) = -F(F + k)$ \\
+what is $p^2 - q$? \\
+\todo{Write your stability analysis} Therefore, the system is \emph{stable}.
+
+
+
+Substituting the second equillibrium point yields:
+\begin{align*}
+	J(1, 0) = \begin{pmatrix}
+		          -F & 0 \\
+		          0  & 0
+	          \end{pmatrix}
+\end{align*}
+$Tr(J(1,0)) = -F$  and  $\det(J(1,0)) = 0$ \\
+Therefore, the system is \emph{stable}.
+
+
 
 Part 2: We do the same analysis with the diffusion terms added back?
 
@@ -207,12 +245,14 @@ Part 2: We do the same analysis with the diffusion terms added back?
 3. Tr J and Det J of the jacobian
 4. Is it stable or unstable.
 
-\subsection{Numerical simulation of the Gray-Scott model}
+\subsection{Simulation of the Gray Scott Model}
 \label{sec:numerical}
 % Movtiation for doing a numerical simulation
-This subsection documents my numerical simulation of the Gray--Scott model. The simulation uses a
-finite difference approximation based on a 5-point stencil to approximate the Laplacian at each cell
-of a $20 \times 20$ grid. The code for the simulation is in the appendix.
+\subsection{Texture Mapping in Blender}
+\todo{I will do this section if I have time, for now I will just do the parameter map and stability analysis.}
+
+
+
 \todo{Method details, figures and discussion.}
 \section{Conclusion}
 \label{sec:conclusion}
@@ -223,11 +263,6 @@ of a $20 \times 20$ grid. The code for the simulation is in the appendix.
 
 \printbibliography
 
-
-%% Introducing Procedural Generation 
-Procedural Generation is a broad area in Computer Graphics that involves the generation of 3D terrains \cite{lagae2010}. This lets  artists and game developers can create realistic 3D terrains with mountains, rivers and vegetation without the need to design or program them manually. To the player, these terrains will generate on the fly with no pre-processing required. The most famous use case of procedural generation can be found in the video game Minecraft which uses it heavily.
-
-Procedural Generation is a broad area in Computer Graphics that involves the generation of 2D and 3D textures in real time. Artists and developers can create rali
 
 \section{Appendix}
 \end{document}
