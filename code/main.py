@@ -7,6 +7,8 @@ import numpy
 
 
 
+
+
 ## Setup Grid Size
 GRID_SIZE = 20
 

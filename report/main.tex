@@ -35,13 +35,16 @@
 
 \section{Introduction}
 \label{sec:introduction}
+
+
+
 % Structure 
 \subsection{Structure of this report}
 % Describe each section in their own line:
 \Cref{sec:background} gives the background on reaction--diffusion systems and the phenomena they
 model. We then discuss a famous result of Alan Turing on reaction--diffusion systems, and finally
-focus on a simple reaction--diffusion system called the Gray--Scott model.
-\Cref{sec:simulations} is my original contribution: a stability analysis of the Gray--Scott model
+focus on a simple reaction-diffusion system called the Gray--Scott model.
+\Cref{sec:simulations} is my original contribution: a stability analysis of the Gray-Scott model
 and a numerical simulation of it.
 \Cref{sec:conclusion} gives the conclusion and possible extensions of this project.
 \section{Background}
@@ -49,33 +52,22 @@ and a numerical simulation of it.
 
 
 
+
 \subsection{Procedural Generation}
 \label{sec:procedural}
 
-Procedural generation is a broad set of techniques in computer graphics that is used to create visuals, such as pseudo-realistic textures, terrains and surfaces on the fly. Instead of an artist painting every surface or sculpting every mountain, a developer writes a short program controlled by a few parameters, and the computer produces the detail, often on the fly as the player explores. This makes it possible to build large, \emph{lifelike} landscapes with mountains, rivers and vegetation at very little cost in memory and artist time \parencite{lagae2010}.
+Procedural generation is a broad set of techniques in computer graphics that is used to create visuals, such as pseudo-realistic textures, terrains and surfaces on the fly. It eliminates the need for an artists to manually prototype and create their own worlds, Instead, a deterministic function called \emph{noise} is used to produce the desired visuals, on the fly as the player explores. This makes it possible to build large, \emph{lifelike} landscapes with mountains, rivers and vegetation with little impact to memory. \parencite{lagae2010}.
 
-
-Procedural generation is a broad set of techniques in computer graphics that is used to create visuals, such as pseudo-realistic textures, terrains and surfaces on the fly. It eliminates the need for an artists to manually prototype and create their own worlds, Instead, a deterministic function is used to produce the desired visuals, on the fly as the player explores. This makes it possible to build large, \emph{lifelike} landscapes with mountains, rivers and vegetation with little impact to memory. \parencite{lagae2010}.
-
-
-% TODO: add a source for the Minecraft example, or remove it.
-A well-known example is Minecraft, which uses procedural techniques to generate its worlds and cave systems.
+% Examples of Procedural Geneartion
 
 Procedural generation is based on many algorithms. In this section we study one of the most widely used algorithms: \emph{Perlin Noise}.
 
-\paragraph{Origin.}
+
 % TODO: cite a source for the Tron / MAGI / Academy Award facts (e.g. Perlin's NYU biography page).
-Ken Perlin devised his noise function after working on the visual effects for Disney's 1982 film \emph{Tron} at Mathematical Applications Group, Inc.\ (MAGI), and published it in 1985 \parencite{perlin1985}. His discovery of technique was so pivotal to the industry that it earned him an Academy Award for Technical Achievement, and still sees widespread in modern day films and video games. \parencite{lagae2010}.
+Ken Perlin devised his noise function after working on the visual effects for Disney's 1982 film \emph{Tron} at Mathematical Applications Group, Inc.\ (MAGI), and published it in 1985 \parencite{perlin1985}. His discovery of technique was so pivotal to the industry that it earned him an Academy Award for Technical Achievement \parencite{nyuperlin}, and still sees widespread in modern day films and video games. \parencite{lagae2010}.
 
 \paragraph{How Perlin noise works.}
-Consider one dimension first. At every integer $i$ we fix a random gradient (slope) $g_i$. For a point $x$ between $i$ and $i+1$, let $t = x - i \in [0,1]$. Each of the two neighbouring lattice points contributes a straight line through zero with its own slope, and the two lines are blended together:
-\begin{equation}
-	\label{eq:perlin-1d}
-	\mathrm{noise}(x) = \bigl(1 - s(t)\bigr)\, g_i\, t \;+\; s(t)\, g_{i+1}\,(t - 1),
-	\qquad
-	s(t) = 6t^5 - 15t^4 + 10t^3 .
-\end{equation}
-The blending curve $s$ rises smoothly from $0$ to $1$, and its first and second derivatives vanish at $t = 0$ and $t = 1$, so neighbouring pieces join without visible creases \parencite{perlin2002}. Two properties follow directly from \cref{eq:perlin-1d}: the noise is zero at every integer, and its bumps all have roughly the same width, about one lattice cell (\cref{fig:perlin}a). In two dimensions the idea is the same: each corner $\mathbf{c}$ of a grid square carries a random unit vector $\mathbf{g}_{\mathbf{c}}$, the corner contributes $\mathbf{g}_{\mathbf{c}} \cdot (\mathbf{x} - \mathbf{c})$, and the four contributions are blended with $s$ in each direction (\cref{fig:perlin}b).
+Need to write how perlin noise works next.
 
 \paragraph{Building textures from noise.}
 A single layer of noise is smooth but bland. Natural surfaces have detail at many scales, so copies of the noise at doubled frequency and halved amplitude are added together:
@@ -85,49 +77,42 @@ A single layer of noise is smooth but bland. Natural surfaces have detail at man
 \end{equation}
 which is known as fractal Brownian motion (\cref{fig:perlin}c). Replacing $\mathrm{noise}$ by $\lvert \mathrm{noise} \rvert$ in \cref{eq:fbm} gives a ``turbulence'' function, and feeding it into a simple formula produces a material. Perlin's classic marble, for example, is $\sin\bigl(x_1 + \mathrm{turbulence}(\mathbf{x})\bigr)$ \parencite{perlin1985}
 
-% 	\centering
-% 	\includegraphics[width=\textwidth]{perlin_noise.png}
-% 	\caption{Perlin noise, generated with our own implementation. (a) One-dimensional gradient noise, \cref{eq:perlin-1d}; it is zero at every lattice point (dots). (b) Two-dimensional Perlin noise. (c) Six octaves summed, \cref{eq:fbm}. (d) Marble, $\sin(x_1 + \mathrm{turbulence})$, after \textcite{perlin1985}.}
-% 	\label{fig:perlin}
-% \end{figure}
 
 \paragraph{Limitations.}
-Textures created with Perlin noise, and with noise functions in general, are random and have no organised structure \parencite{lagae2010}. Every bump has roughly the same size, but the bumps are placed at random: nothing makes spots evenly spaced or stripes run parallel. This is ideal for clouds, terrain or marble, but if we want a zebra whose stripes organise themselves, a different approach is needed. That approach is the subject of \cref{sec:rd-systems}.
+
+Textures created with Perlin Noise are random and have no structure \cite{lagae2010}. Although this approach is ideal for terrain generation, it cannot be used to generate patterns found in biology such as Coral reefs, zebra stripes, Giraffe spots, etc. For this we use a different technique found in Reaction Diffusion Systems.
 
 
 \subsection{Reaction Diffusion Systems}
 \label{sec:rd-systems}
 
-% Segway to Reaction Diffusion Systems 
+% Segue to reaction-diffusion systems
+This brings us to the heart of this report: \emph{reaction-diffusion systems}. These are nonlinear dynamical systems, originally from chemistry, and model changes in concentrations of several chemical substances as they react and diffuse against space and time.    \parencite{turing1952}.
 
-This brings us to the heart of this report, \emph{Reaction Diffusion Systems}. These are Nonlinear dynamical systems originating from the world of Chemistry that models the intereactions between multiple chemical susbtances and their diffusivity with resepct to space and time.
-\\
-\emph{Diffusion} refers to the spread of chemical substances between low and high concentration. It turns out adding an element of diffusion leads to some very interesting pattern formation.
-\\
-The General Form of Reaction Diffusion Systems is given by:
+\emph{Diffusion} refers to the behaviour chemical substances \textit{spreading} from regions of high concentration to low concentration and as a result the substance is uniformly distributed across a medium \cite{britannicadiffusion}. It turns out that mathematically modelling this behaviour leads to an interesting variety of pattern formation called Turing Patterns. Which will be the focus of the following \cref{sec:turing-patterns}.
 
+The general form of a reaction--diffusion system is
 \begin{equation} \label{eq:rd-general}
 	\pd{\mathbf{q}}{t} = D \nabla^2 \mathbf{q} + R(\mathbf{q}),
 \end{equation}
 
+% Explain the point of a dimensionless equation
+Above is a dimensionless equations wherein all the physical quantities are stripped and all the terms scaled. \parencite{strogatz}.
 
-% Explanation of the system
-\begin{itemize}
-	\item The equation is \emph{dimensionless}
-	\item $\mathbf{q}$ is a vector of unknown vector functions representing the concentrations of an array of chemical substances.
-	\item $D$ gives the diffusivity for each chemical
-	\item $R(\mathbf{q}$) is another vector functions that describes all the chemical reactions.
-\end{itemize}
 
-There are several systems that fit the criteria of Reaction Diffusion Systems. Notably, the activator eqution, some russian equation, etc.
+
+
+
 
 
 \subsection{Turing patterns}
 \label{sec:turing-patterns}
-\todo{Define Turing patterns} \\
-Turing patterns are self organized patterns that resembles structures found in nature. \\
-\todo{Cite turing's 1952 discovery on chemical morphogenesis}
 
+In 1952, Towards the end of Alan Turing's Life, Turing publishes one of his most seminal contributions in the field Mathematical Biology. In his 1952 paper titled "Chemical Basis of Morphogens". Turing discovers a mechanism which describes the formation of some patterns found in nature \parencite{turing1952}. For instance, the patterns found in animal skin such as the stripes of a zebra, spots of a jaguar, the structure of our brains and the formation of coral reefs are considered to be Turing patterns \parencite{sheffieldturing}.
+
+In the paper, Turing studies the development of an embryo and describes a system of signalling molecules called \emph{Morphogens}. The reaction and diffusion shown by these morphogens can destablize the system leading to an interesting case of pattern formation \parencite{turing1952}.  
+
+In the following section, we will be studying Turing patterns formed by a simple model called the Gray Scott Model.
 
 \subsection{The Gray-Scott model}
 \label{sec:gray-scott}
@@ -160,92 +145,164 @@ The second rule suggests decay for $V$ by turning into an inert product $P$ whic
 	\item $k$ is the decay rate for chemical $V$.
 \end{itemize}
 
-% What we are going to do with this model 
-The broader goal of this project is to explain pattern formation rising from Reaction Diffusion Systems but the narrower goal is to find which parameter values of $F$ and $k$. Therefore, In the end we will build a parameter map of the Gray Scott Model that can identify which patterns we get.
 
 
 \section{Original Contribution}
 \label{sec:simulations}
 
-\subsection{Stability analysis}
+
+
+
+\subsection{Linear Stability Analysis of the Gray Scott Model}
 \label{sec:stability}
 
+Steady states of a dynamical system are states after which point the system shows no change. We consider a small disturbance around a steady state and say the state is \textit{stable} if the disturbance dampens and the system loops back to its steady state. While an \textit{unstable} steady state is when the disturbance grows over and thus the system never returns back to it's steady state \cite{strogatz}.
+To give an analogy, \cref{fig:ball-analogy} compares a ball in a hilltop vs a valley. Panel (a) is a stable state as the ball returns to it's steady state after a small nudge. Panel (b) is an example of an unstable state, the ball never returns to a steady state after a small push and finally panel (c) shows a bistable state where the ball returns to a steady state but at a different point.
 
-% Definition of Stability Analysis
-A stability analysis gives us a guess on the behaviour of the system. For instance, a system is said to be stable if solutions move away from the equillibrium point, otherwise an unstable system is when solutions move away from the equillibrium point.
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.9, >=Stealth]
+		% --- (a) Stable: ball in a valley
+		\begin{scope}
+			\draw[thick] (-1.6,1.3) .. controls (-0.6,-0.6) and (0.6,-0.6) .. (1.6,1.3);
+			\fill[blue!60] (0,0.1) circle (0.22);
+			\draw[gray, dashed] (0.72,0.42) circle (0.22);
+			\draw[->, thick, red!70!black] (0.62,0.85) to[bend right=30] (0.22,0.45);
+			\node at (0,-0.9) {(a) Stable};
+		\end{scope}
+		% --- (b) Unstable: ball on a hilltop
+		\begin{scope}[xshift=4.2cm]
+			\draw[thick] (-1.6,-0.4) .. controls (-0.6,1.5) and (0.6,1.5) .. (1.6,-0.4);
+			\fill[blue!60] (0,1.24) circle (0.22);
+			\draw[gray, dashed] (0.4,1.17) circle (0.22);
+			\draw[->, thick, red!70!black] (0.65,1.45) to[bend left=30] (1.25,0.55);
+			\node at (0,-0.9) {(b) Unstable};
+		\end{scope}
+		% --- (c) Bistable: two valleys, a big push crosses the hill
+		\begin{scope}[xshift=8.6cm]
+			\draw[thick] (-2.0,1.2) .. controls (-1.6,-0.5) and (-0.9,-0.5) .. (-0.6,0.3)
+			.. controls (-0.3,1.0) and (0.3,1.0) .. (0.6,0.3)
+			.. controls (0.9,-0.5) and (1.6,-0.5) .. (2.0,1.2);
+			\fill[blue!60] (-1.26,0.03) circle (0.22);
+			\draw[gray, dashed] (1.26,0.03) circle (0.22);
+			\draw[->, thick, red!70!black] (-1.0,0.5) .. controls (-0.3,1.9) and (0.3,1.9) .. (1.0,0.5);
+			\node at (0,-0.9) {(c) Bistable};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Analogy of a ball on a hilltop vs a valley (a) Ball is stationary in a valley, giving a small nudge to the ball returns it back to its stationary state (b) Nudging the ball on a hilltop, the ball never comes back to it's stationary state (c) With two valleys, a large enough push carries the ball over the hill into the other stable state.}
+	\label{fig:ball-analogy}
+\end{figure}
+
+Nonlinear systems such as the Gray-Scott model are difficult to solve analytically. Therefore, I will be doing a stability analysis to find out the behaviour of the system near it's steady states. To do this, we will first linearise the system by it's Jacobian Matrix and classify by its trace and determinant.
 
 
-Nonlinear Dynamical Systems are hard to solve analytically.
+% Why this analysis for gray scott 
+In this analysis I will show how diffusion can \emph{destabilise} a uniform state and result in pattern formation. The analysis will be done twice, once by dropping the coefficients of diffusion $D_u$ and $D_v$ and then we will add them back to the system and check for whether it destabilizes the system.
 
 
+\begin{equation}
+	\label{eq:gs-stab}
+	\begin{aligned}
+		\pd{U}{t} & = \Du \lap U + \underbrace{-UV^2 + \GSF(1 - U)}_{f(U,V)},   \\
+		\pd{V}{t} & = \Dv \lap V + \underbrace{UV^2 - (\GSF + \GSk)V}_{g(U,V)}.
+	\end{aligned}
+\end{equation}
 
+% =====================================================================
+\subsubsection*{Stability Analysis without Diffusion}
 
-% Why are we studying the stability analysis for the gray scott model
-The point of this stability analysis is to show how adding a diffusion effect can destabilize a system. This is also called as Turing instability.
+Setting $\Du = \Dv = 0$ in \cref{eq:gs-stab}, every point in space behaves in the same way. We define $\dot{U}$ and $\dot{V}$:
+\begin{equation}
+	\label{eq:gs-nodiff}
+	\begin{aligned}
+		\dot{U} & = f(U, V) = -UV^2 + F(1 - U), \\
+		\dot{V} & = g(U, V) = UV^2 - (F + k)V.
+	\end{aligned}
+\end{equation}
 
-% How do we do a Stability Analysis:
-In this case, we will be doing a stability analysis twice. The first part will prove the Gray Scott Model is stable when we drop diffusion. In the second part we will show that the Gray Scott Model's turing unstable after adding the diffusion constant.
+\paragraph{Steady states.}
+A steady state needs $f = g = 0$. Factorising, $g = V\bigl(UV - (F + k)\bigr) = 0$, so either $V = 0$ or $UV = F + k$. Setting $V = 0$ yields $U = 1$. Thus $(U, V) = (1, 0)$ is a trivial steady state of the system; the case $UV = F + k$ is treated below.
 
-
-%% Maths for Stability analysis 
-1. Setup the Gray Scott system  as follows:
-\begin{align*}
-	\dot{U} = -UV^2 + D_u \nabla^2 + F(1 - U) \\
-	\dot{V} = UV^2 + D_v \nabla^2 + (F + k)V
-\end{align*}
-
-2. What are the equillibrium points:
-From inspection, there are two $(0, 0)$ and $(1, 0)$.
-
-3. Jacobian of the gray-scott model:
-\begin{align*}
-	J = \begin{pmatrix}
-		    \partial_{u} \dot{U} & \partial_v  \dot{U}  \\
-		    \partial_{u} \dot{V} & \partial_{v} \dot{V}
-	    \end{pmatrix}
+\paragraph{The Jacobian.}
+The Jacobian of the system is
+\begin{equation}
+	\label{eq:gs-jacobian}
+	J =
+	\begin{pmatrix}
+		\dfrac{\partial f}{\partial U} & \dfrac{\partial f}{\partial V} \\[8pt]
+		\dfrac{\partial g}{\partial U} & \dfrac{\partial g}{\partial V}
+	\end{pmatrix}
 	=
 	\begin{pmatrix}
-		- V^2 - F & -2UV     \\
-		V^2       & (F + k)V
-	\end{pmatrix}
-\end{align*}
+		-V^2 - F & -2UV          \\
+		V^2      & 2UV - (F + k)
+	\end{pmatrix}.
+\end{equation}
 
-4. Substitute equillibrium points into jacobian
+\paragraph{The trivial steady state.}
+We classify each steady state by $p = \tr J$ and $q = \det J$: it is stable if $p < 0$ and $q > 0$, and a saddle if $q < 0$; it is a node if $p^2 - 4q > 0$ and a spiral if $p^2 - 4q < 0$ \parencite{teschl2012}. At $(1, 0)$:
+\begin{equation}
+	\label{eq:gs-jacobian-trivial}
+	J(1, 0) =
+	\begin{pmatrix}
+		-F & 0        \\
+		0  & -(F + k)
+	\end{pmatrix},
+	\qquad p = -(2F + k), \qquad q = F(F + k), \qquad p^2 - 4q = k^2 .
+\end{equation}
+Since $F, k > 0$, we have $p < 0$, $q > 0$ and $p^2 - 4q \geq 0$, so the trivial state is a \emph{stable node for every} $F$ and $k$. A small amount of $V$ added to a tank full of $U$ simply dies out.
 
-First equillibrium point:
-\begin{align*}
-	J(0, 0) = \begin{pmatrix}
-		          -F & 0       \\
-		          0  & (F + k)
-	          \end{pmatrix}
-\end{align*} \\
+\paragraph{The non-trivial steady states.}
+Now take $UV = F + k$. Writing $UV^2 = (UV)V$ in $f = 0$ gives $V$ in terms of $U$; substituting back into $UV = F + k$ gives a quadratic in $U$:
+\begin{equation}
+	\label{eq:gs-nontrivial}
+	\begin{gathered}
+		V = \frac{F(1 - U)}{F + k}, \qquad
+		U^2 - U + c = 0 \quad \text{with } c = \frac{(F + k)^2}{F}, \\[4pt]
+		U_\pm = \frac{1}{2}\left(1 \pm \sqrt{1 - \frac{4(F + k)^2}{F}}\right), \qquad
+		V_\pm = \frac{F + k}{U_\pm}.
+	\end{gathered}
+\end{equation}
+These exist only when the term under the square root is non-negative, that is, $F \geq 4(F + k)^2$, or
+\begin{equation}
+	\label{eq:saddle-node}
+	\GSk \leq \tfrac{1}{2}\sqrt{F} - F .
+\end{equation}
+On the curve $k = \tfrac12\sqrt{F} - F$ the two states merge and vanish, so it is a \emph{saddle-node bifurcation} curve. Its highest point is at $F = k = 1/16$.
 
-$p = Tr(J(0,0)) = k$  and  $q = \det(J(0,0)) = -F(F + k)$ \\
-what is $p^2 - q$? \\
-\todo{Write your stability analysis} Therefore, the system is \emph{stable}.
+\paragraph{Classifying the non-trivial states.}
+Using $UV = F + k$,
+\begin{equation}
+	\label{eq:gs-jacobian-nontrivial}
+	J(U_\pm, V_\pm) =
+	\begin{pmatrix}
+		-V^2 - F & -2(F + k) \\
+		V^2      & F + k
+	\end{pmatrix},
+	\qquad p = k - V^2, \qquad q = (F + k)(V^2 - F) .
+\end{equation}
+From the quadratic, $(F + k)^2 = FU(1 - U)$, so $V^2 = (F + k)^2/U^2 = F(1 - U)/U$ and $V^2 - F = F(1 - 2U)/U$. Since $U_+ > \tfrac12 > U_-$:
+\begin{itemize}
+	\item $(U_+, V_+)$ has $q < 0$, so it is a \emph{saddle} (always unstable);
+	\item $(U_-, V_-)$ has $q > 0$, so it is stable when $p < 0$, i.e.\ $V_-^2 < k$. It loses stability when $p = 0$ with $q > 0$, a \emph{Hopf bifurcation}, on the curve $V_-^2 = k$.
+\end{itemize}
+We call $(U_-, V_-)$ the \emph{coloured state}, since it is the uniform state containing a lot of $V$.
 
+\paragraph{Summary.}
+Inside the saddle-node curve and before the Hopf curve, the well-mixed system is \emph{bistable}: the trivial state and the coloured state are both stable, separated by the saddle $(U_+, V_+)$, just like the two valleys in \cref{fig:ball-analogy}(c). Outside the saddle-node curve, only the trivial state exists. Both curves are shown in \cref{fig:stability-map}.
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{stability_map.png}
+	\caption{Uniform states of the Gray--Scott model with $\Du = 2\Dv$. Solid curve: saddle-node bifurcation, \cref{eq:saddle-node}. Dashed curve: Hopf bifurcation, $V_-^2 = k$. The shading shows where only the trivial state exists, where the coloured state is stable, where it is Turing unstable, and where it oscillates.}
+	\label{fig:stability-map}
+\end{figure}
 
-Substituting the second equillibrium point yields:
-\begin{align*}
-	J(1, 0) = \begin{pmatrix}
-		          -F & 0 \\
-		          0  & 0
-	          \end{pmatrix}
-\end{align*}
-$Tr(J(1,0)) = -F$  and  $\det(J(1,0)) = 0$ \\
-Therefore, the system is \emph{stable}.
+\subsubsection*{Adding back diffusion}
 
-
-
-Part 2: We do the same analysis with the diffusion terms added back?
-
-1. Equillibrium points
-2. Jacobian
-3. Tr J and Det J of the jacobian
-4. Is it stable or unstable.
 
 \subsection{Simulation of the Gray Scott Model}
+\label{sec:parameter-map}
 \label{sec:numerical}
 % Movtiation for doing a numerical simulation
 \subsection{Texture Mapping in Blender}
@@ -256,12 +313,10 @@ Part 2: We do the same analysis with the diffusion terms added back?
 \todo{Method details, figures and discussion.}
 \section{Conclusion}
 \label{sec:conclusion}
-\todo{Summarise what the stability analysis predicts, how well the simulation matches it, and what
-	this means for someone choosing $F$ and $k$ to generate textures. Possible extensions: varying the
-	diffusion ratio $D_u/D_v$, comparing the predicted and simulated spot spacing, and running the
-	simulation on a 3D surface as in \textcite{turk1991}.}
+To conclude the patterns formed by Reaction Diffusion Systems and specifically the Gray Scott Model are very interesting
 
 \printbibliography
+
 
 
 \section{Appendix}
