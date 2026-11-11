@@ -38,6 +38,7 @@
 
 
 
+
 % Structure 
 \subsection{Structure of this report}
 % Describe each section in their own line:
@@ -50,8 +51,7 @@ and a numerical simulation of it.
 \section{Background}
 \label{sec:background}
 
-
-
+The project is intended for a Generalist Audience, specifically those that are interested in Computer Graphics. As such, The mathematics will be explained accordingly.  
 
 \subsection{Procedural Generation}
 \label{sec:procedural}
@@ -77,9 +77,7 @@ A single layer of noise is smooth but bland. Natural surfaces have detail at man
 \end{equation}
 which is known as fractal Brownian motion. Replacing $\mathrm{noise}$ by $\lvert \mathrm{noise} \rvert$ in \cref{eq:fbm} gives a ``turbulence'' function, and feeding it into a simple formula produces a material. Perlin's classic marble, for example, is $\sin\bigl(x_1 + \mathrm{turbulence}(\mathbf{x})\bigr)$ \parencite{perlin1985}.
 
-
-\paragraph{Limitations.}
-
+Although, Perlin Noise has widespread use in the industry, There are some limitations.
 Textures created with Perlin noise are random and have no structure \parencite{lagae2010}. Although this approach is ideal for terrain generation, it cannot be used to generate patterns found in biology such as coral reefs, zebra stripes, giraffe spots, etc. For this we use a different technique found in Reaction Diffusion Systems.
 
 
@@ -89,15 +87,17 @@ Textures created with Perlin noise are random and have no structure \parencite{l
 % Segue to reaction-diffusion systems
 This brings us to the heart of this report: \emph{reaction-diffusion systems}. These are nonlinear dynamical systems, originally from chemistry, and model changes in concentrations of several chemical substances as they react and diffuse over space and time \parencite{turing1952}.
 
+% Diffusion Behaviour
 \emph{Diffusion} refers to the behaviour of chemical substances \textit{spreading} from regions of high concentration to low concentration and as a result the substance is uniformly distributed across a medium \parencite{britannicadiffusion}. It turns out that mathematically modelling this behaviour leads to an interesting variety of pattern formation called Turing patterns, which will be the focus of \cref{sec:turing-patterns}.
 
+% General Form of Reaction Diffusion System
 The general form of a reaction--diffusion system is
 \begin{equation} \label{eq:rd-general}
 	\pd{\mathbf{q}}{t} = D \nabla^2 \mathbf{q} + R(\mathbf{q}),
 \end{equation}
 
 % Explain the point of a dimensionless equation
-Above is a dimensionless equation wherein all the physical quantities are stripped and all the terms scaled \parencite{strogatz}.
+Above is a dimensionless equation wherein all the physical quantities are stripped and all the terms scaled \parencite{strogatz}. 
 
 
 \subsection{Turing patterns}
@@ -143,12 +143,9 @@ The second rule suggests decay for $V$ by turning into an inert product $P$ whic
 
 
 \section{Original Contribution}
-\label{sec:simulations}
 
 
-
-
-\subsection{Linear Stability Analysis of the Gray--Scott Model}
+\subsection{Linear Stability Analysis of the Gray-Scott Model}
 \label{sec:stability}
 
 Steady states of a dynamical system are states after which point the system shows no change. We consider a small disturbance around a steady state and say the state is \textit{stable} if the disturbance dampens and the system loops back to its steady state. While an \textit{unstable} steady state is when the disturbance grows and thus the system never returns back to its steady state \parencite{teschl2012}. To give an analogy, \cref{fig:ball-analogy} compares a ball on a hilltop versus in a valley. Panel (a) is a stable state as the ball returns to its steady state after a small nudge. Panel (b) is an example of an unstable state, the ball never returns to a steady state after a small push and finally panel (c) shows a bistable state where the ball returns to a steady state but at a different point.
@@ -296,35 +293,124 @@ From the quadratic, $(F + k)^2 = FU(1 - U)$, so $V^2 = (F + k)^2/U^2 = F(1 - U)/
 \subsubsection*{Adding back diffusion}
 
 
-\subsection{Simulation of the Gray--Scott Model}
-\label{sec:parameter-map}
-\label{sec:numerical}
-% Movtiation for doing a numerical simulation
-\subsection{Texture Mapping in Blender}
-\todo{I will do this section if I have time, for now I will just do the parameter map and stability analysis.}
+\subsection{Simulation of the Gray--Scott Model} 
+
+In \textit{Complex Patterns in a Simple System}, \textcite{pearson1993} numerically simulated the Gray--Scott model and found a wide variety of patterns across the
+$(F, k)$ parameter space, including Turing-type patterns such as hexagonal arrays of
+spots. He integrated the equations using the forward Euler method on a
+$256 \times 256$ grid and classified the resulting patterns into 14 classes. 
+
+Because \textcite{pearson1993} simulated the system with an initial condition consisting of a small square in the center of the grid with $(U, V) = (\tfrac{1}{2}, \tfrac{1}{4})$, his simulation missed several types of pattern. This observation was made by Robert Munafo \parencite{munafo2022pearson}, who extended Pearson's simulations with other starting conditions and plotted a parameter map of $F, k$ values and showed that there are actually 19 classes of patterns in the Gray--Scott model.  
+
+Inspired by the work of \textcite{pearson1993} and \textcite{munafo2022pearson}, I will be implementing my own simulation using Pearson's Method to produce some examples of these patterns. I will also build my own version of Munafo's parameter map to show which patterns the Gray--Scott model produces with which parameters. 
+
+
+
+
+
 
 
 
 \section{Conclusion}
 \label{sec:conclusion}
-To conclude the patterns formed by Reaction Diffusion Systems and specifically the Gray Scott Model are very interesting
+In conclusion, Pattern formation by Reaction Diffusion Systems is a fascinating topic. There is a vast amount of literature in this topic and so we've only scratched the surface of what is possible.   
 
+Due to time constraints, the report does not cover the intended goal of applying Reaction Diffusion systems to Computer Graphics. However, it is possible to use the results of from our numerical simulation in creating texture maps that can be used in 3D Design and Game development tools such as Blender, Godot, Unity and Unreal Engine. This will enable artists to produce graphics of natural phenomenon whose patterns can be explained by Reaction Diffusion. 
+
+This report also attempts to do a stability Analysis on the Gray Scott Model with Diffusion. An analysis without the diffusion terms was done in this report which showed that the steady states of the model were stable. However, further analysis after adding back diffusion terms is still pending. I hypothesize that adding back diffusion to the system should destabilize the system as shown by \parencite{turing1952}, I believe this analysis could be helpful in identifying which parameters lead to stable and unstable states.   
+
+Additionally, the parameter map that I built only uses 96 by 96 grid size and does not cover all the possibilities as shown by \parencite{munfao2022pearson}. This was because of computational constraints. 
 \printbibliography
 
-\section{Project Plan}
+\pagebreak
 
+\section{Project Plan}
+\label{sec:plan}
+
+\subsection*{Project plan as of 23rd October}
+
+\subsubsection*{Project title}
+Reaction Diffusion Systems and Turing Patterns
+
+\subsubsection*{Overview}
+This research paper will focus on the applications of Reaction Diffusion Systems. Reaction Diffusion systems emerge from Chemistry and Biology, however have found use in a lot of areas. The project will provide a background to Reaction Diffusion Systems, explore real world applications and document my own application for using it as a procedural generation algorithm (Python Program).
+
+\subsubsection*{Required reading and sources}
+To make it easier to start my research, I have structured my reading by effort: \emph{low effort}, \emph{medium effort} and \emph{high effort}.
+
+\begin{enumerate}
+  \item \emph{Low effort}: Short reading times of 15 to 30 minutes, aimed to give a basic understanding of the topic I'm researching. Videos from YouTube are also included in this category:
+  \begin{itemize}
+    \item \href{https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system}{Wikipedia: Reaction--diffusion system} and \href{https://en.wikipedia.org/wiki/Turing_pattern}{Turing pattern}: overview of the model and its biological motivation.
+    \item \href{https://thecodingtrain.com/challenges/13-reaction-diffusion}{Coding Train: Coding Challenge \#13, Reaction Diffusion Algorithm} (\href{https://www.youtube.com/watch?v=BV9ny785UNc}{YouTube}): live implementation of the Gray--Scott model in p5.js.
+    \item \href{https://karlsims.com/rd.html}{Karl Sims: Reaction-Diffusion Tutorial}: intuitive explanation of feed/kill rates, the discrete Laplacian, and the $(k, f)$ parameter map.
+  \end{itemize}
+
+  \item \emph{Medium effort}: Semi-long reading times of 30 to 45 minutes, aimed to give a more technical understanding of the topic with definitions and theorems related to the topic. Reading material includes longer videos, tutorials for math concepts from textbooks / internet, etc.
+  \begin{itemize}
+    \item \href{https://www.mrob.com/pub/comp/xmorphia/index.html}{Robert Munafo: Reaction-Diffusion by the Gray-Scott Model, Pearson's Parametrization}: term-by-term breakdown of the PDEs and a classified map of pattern types across parameter space.
+    \item \href{https://redblobgames.com/x/2202-turing-patterns}{Red Blob Games: Turing Patterns notes}: worked exploration of Gray--Scott, including parameter sensitivity and convention differences between sources.
+    \item \href{https://nbviewer.jupyter.org/github/numerical-mooc/numerical-mooc/blob/remove_pyc/lessons/04_spreadout/04_06_Reaction_Diffusion.ipynb}{Numerical MOOC: Reaction-Diffusion notebook}: forward-time/central-space discretisation of Gray--Scott in Python.
+    \item Strogatz, \emph{Nonlinear Dynamics and Chaos} (2nd ed.), Ch.\ 5--6 (linear systems, phase plane) and Ch.\ 8 (bifurcations in 2D): the linearisation and trace--determinant tools needed for Turing stability analysis.
+    \item \href{https://doi.org/10.1126/science.1179047}{Kondo \& Miura (2010), Reaction-diffusion model as a framework for understanding biological pattern formation}, \emph{Science}: accessible review connecting the theory to real animal patterns.
+  \end{itemize}
+
+  \item \emph{High effort}: Long reading times of up to 60 minutes. The reading material is much more complex and targeted, requires a lot of effort to understand. Material includes research papers, advanced math topics and full lectures:
+  \begin{itemize}
+    \item \href{https://doi.org/10.1098/rstb.1952.0012}{Turing (1952), The Chemical Basis of Morphogenesis}, \emph{Phil.\ Trans.\ R.\ Soc.\ B}: the original diffusion-driven instability argument.
+    \item \href{https://arxiv.org/abs/patt-sol/9304003}{Pearson (1993), Complex Patterns in a Simple System}, \emph{Science} 261: the Gray--Scott parameter classification used by most graphics implementations.
+    \item \href{https://doi.org/10.1145/122718.122749}{Turk (1991), Generating Textures on Arbitrary Surfaces Using Reaction-Diffusion}, SIGGRAPH '91: reaction-diffusion applied directly to 3D surfaces.
+    \item \href{https://doi.org/10.1145/122718.122750}{Witkin \& Kass (1991), Reaction-Diffusion Textures}, SIGGRAPH '91: anisotropic and spatially varying reaction-diffusion for texture synthesis.
+    \item Murray, \emph{Mathematical Biology II: Spatial Models and Biomedical Applications} (3rd ed.), Ch.\ 2: full derivation of the Turing instability conditions and the critical wavenumber, which is the core of the linear stability analysis.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection*{What I'll do}
+The research project will start with an introduction of the chosen research topic: \emph{Reaction Diffusion Systems} and \emph{Turing Patterns}. Then I plan to investigate the solutions of this family of equations and determine the behaviour. After this, I'm planning to highlight several applications of this topic that I've found from my research. In the end, I would like to wrap up this report with my original contribution of developing a program in Python that is capable of simulating and rendering patterns from Reaction Diffusion Systems.
+
+\subsubsection*{Original contribution}
+My original contribution to this report will include using the knowledge I've gained from this research topic and apply it to develop a Python program capable of producing Turing patterns.
+
+\subsubsection*{Timeline}
+Timeline as of 30th October:
+\begin{itemize}
+  \item[$\boxtimes$] Revised project plan, timeline and gather reading material
+  \item[$\boxtimes$] Read material, take notes and make timeline more specific
+  \item[$\boxtimes$] Read more material, take notes and write everything I've learned from my reading
+  \item[$\boxtimes$] Define the right scope for the project and start thinking about ideas for original contribution
+  \item[$\boxtimes$] 30th October: Research and take notes
+  \item[$\square$] Focus on original contribution
+  \item[$\square$] Finish original contribution by 1st November
+  \item[$\square$] Send project for feedback
+  \item[$\square$] Act on feedback and revise original contribution
+  \item[$\square$] Complete introduction and conclusion sections by 5th November
+  \item[$\square$] Send project for feedback before next week's class
+  \item[$\square$] Proofread the project, look for issues
+  \item[$\square$] Fix those issues
+  \item[$\square$] 8th November: Project submission
+\end{itemize}
+
+\subsubsection*{Version control}
+The research project is tracked using GitHub. The repository of the project can be accessed at: \url{https://github.com/Rageon787/math3030-project.git}
+
+\subsubsection*{Plan revisions}
+Revised plan with new timeline as I've fallen behind a lot. Future revisions will be about the scope of the project and original contribution.
+
+\pagebreak
 \section{Reflection}
-When I started working on this project, I had set myself some high expectations on this project. In the end, the plan I gave myself turned out to be unrealistic. 
+When I first started working on this project, I had set myself some high expectations on this project. In the end, the plan I gave myself turned out to be unrealistic. I made revisions to the project each time I fell behind on progress. The final update to the project plan was on 23rd October as at the time I felt like I had a firm idea for my report. The checklists i made for myself didn't turn out to be realistic given my speed on this project and my workload from other units. 
 
 I chose this topic because of my interest in Computer Graphics enjoy its use for mathematics and found Reaction Diffusion Systems to be link between nonlinear dynamics and computer graphics. In hindsight, I'm not sure if it turned out to be a good idea do something that interested as it created a lot of bias in the research.   
 
-I planned the report to be a study on a specific Reaction Diffusion model called the Gray Scott Model. For the original contribution, I wanted to do a stability analysis and my own simulation of the Grey Scott Model using a method described by J.E Pearson in his paper (insert paper title.). However, when i started doing the stability analysis for the Gray Scott Model with Diffusion I personally found it to be very difficult. So in my report, I’ve only been able to do a stability analysis of a single aspect of the model. 
+I planned the report to be a study on a specific Reaction Diffusion model called the Gray Scott Model. For the original contribution, I wanted to do a stability analysis and my own simulation of the Grey Scott Model using a method described by Pearson in his paper \textit{Complex Patterns in a Simple System} \parencite{pearson1993}. However, when i started doing the stability analysis for the Gray Scott Model with Diffusion I personally found it to be very difficult. So in my report, I’ve only been able to do a stability analysis of a single aspect of the model. 
 
 
-I planned my report to be a study on Turing Patterns formed by Reaction Diffusion Systems. There is a fair amount of literature on the topic of Turing Patterns including Turing's discovery of these patterns in 1952, J.E Pearson's numerical simulation on the Gray Scott Model.   
+I planned my report to be a study on Turing Patterns formed by Reaction Diffusion Systems. There is a fair amount of literature on the topic of Turing Patterns including Turing's discovery of these patterns in 1952, Pearson's numerical simulation \parencite{pearson1993} on the Gray Scott Model.   
 
 
 I’m not very proud with the current state of my report and feel like there is a lot left to be desired. Although, I have stopped working on this report. I find the topic fascinating so I've made the commitment to keep learning more about this topic. Specifically, I want to fill the gap in my stability analysis in which I couldn't complete the part of adding back the diffusion coefficients. 
+
+I regret not asking for a lot of feedback on my project. I didn't feel confident send my report as I felt it wasn't coherent enough to read. I also spent a majority writing text for my report in a notebook as I felt it was much faster than typing. 
 
 On a positive note, Doing this research project has given me a better grasp of Nonlinear Dynamics and the numerical methods for solving a system of Partial Differential Equations that I learned last semester. 
 
